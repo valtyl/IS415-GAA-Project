@@ -4,13 +4,111 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "by:\n\nTan Yan Lin, Valencia\nKumarapandian Yashicaramya\nDerek Poh Yong Jie\n\nThis project is done for IS415 Geospatial Analytics & Applications, a module in Singapore Management University with the guidance of Professor Kam Tin Seong."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "IS415-GAA-Project",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Overview\n\n\nResearch Paper\n\n\nShiny App\n\n\nPoster"
+  },
+  {
+    "objectID": "index.html#research-paper",
+    "href": "index.html#research-paper",
+    "title": "IS415-GAA-Project",
+    "section": "Research Paper",
+    "text": "Research Paper"
+  },
+  {
+    "objectID": "index.html#shiny-app",
+    "href": "index.html#shiny-app",
+    "title": "IS415-GAA-Project",
+    "section": "Shiny App",
+    "text": "Shiny App"
+  },
+  {
+    "objectID": "index.html#poster",
+    "href": "index.html#poster",
+    "title": "IS415-GAA-Project",
+    "section": "Poster",
+    "text": "Poster"
+  },
+  {
+    "objectID": "overview.html",
+    "href": "overview.html",
+    "title": "Overview",
+    "section": "",
+    "text": "We would like to explore 2 themes:\n\nSpatial Point Patterns Analysis\nGeographical Accessibility"
+  },
+  {
+    "objectID": "overview.html#abstract",
+    "href": "overview.html#abstract",
+    "title": "Overview",
+    "section": "2 Abstract",
+    "text": "2 Abstract\nSpatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events such as crime, traffic accidents, diseases, etc. Thus, we would be able to plan after the analysis and investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.\nAnalysis on geographical accessibility can allow us to model existing data to figure how accessible places are in comparison with one another. This helps us in discovering areas that are less accessible and allows us to be able to prioritise improving the geographical accessibility for those areas. A relevant topic would be the analysis on geographical accessibility to health facilities which can be crucial especially when the situation is life threatening."
+  },
+  {
+    "objectID": "overview.html#problem-motivation",
+    "href": "overview.html#problem-motivation",
+    "title": "Overview",
+    "section": "3 Problem & Motivation",
+    "text": "3 Problem & Motivation\nGeographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more.\nThe aim of our project is to create a Shiny web application that will enable users to upload their data and help them with the geographical analysis, in particular spatial point patterns analysis and analysis on geographical accessibility. As such, one does not need to be technically trained to do these types of analysis."
+  },
+  {
+    "objectID": "overview.html#project-objectives",
+    "href": "overview.html#project-objectives",
+    "title": "Overview",
+    "section": "4 Project Objectives",
+    "text": "4 Project Objectives\nIn this project, we would like our Shiny web application to help users:\n\nvisualise distributions and realise the benefits of spatial point patterns analysis\nconduct spatial point patterns analysis (Kernel density estimation and G/F/K/L functions)\nmodel geographical accessibility (Hansen/KD2SFCA/SAM methods)\nuse all the insights gathered from the analysis and models to make practical decisions"
+  },
+  {
+    "objectID": "overview.html#main-features",
+    "href": "overview.html#main-features",
+    "title": "Overview",
+    "section": "5 Main Features",
+    "text": "5 Main Features\nThe main features for the analytical tools are:\n\nSpatial Point Patterns Analysis\n\nFilters\n\nDifferent variables for analysis\nVarious bandwidth selection methods (diggle, CvL, scott, ppl)\nVarious Kernel Methods (gaussian, epanechnikov, quartic, disc)\nVarious Statistical Functions (G/F/K/L functions)\n\nSliders\n\nFor fixed bandwidth selection method\nNumber of simulations\n\n\nGeographical Accessibility\n\nFilters\n\nVarious modelling and visualising methods (Hansen/KD2SFCA/SAM)\n\nSliders\n\nNumber of classes"
+  },
+  {
+    "objectID": "overview.html#data-sources",
+    "href": "overview.html#data-sources",
+    "title": "Overview",
+    "section": "6 Data Sources",
+    "text": "6 Data Sources\nSpatial Point Patterns Analysis\n\nCrime in Baltimore\nTerrorism Acts\n\nGeographical Accessibility\n\nHealth facilities in Africa, Burundi"
+  },
+  {
+    "objectID": "overview.html#approach-methodology",
+    "href": "overview.html#approach-methodology",
+    "title": "Overview",
+    "section": "7 Approach / Methodology",
+    "text": "7 Approach / Methodology\n\nData Preparation\n\nGather data from various sources\nImport geospatial and aspatial data\nData wrangling\n\nExploratory Data Analysis\n\nVisualisation of the data\nChecking for outliers, anomalies, missing values, noise\nFurther data wrangling (if necessary)\n\nSpatial Point Patterns Analysis\n\nFirst-order analysis\n\nKernel Density Estimation\n\nSecond-order analysis\n\nG Function\nF Function\nK Function\nL Function\n\n\nGeographical Accessibility\n\nHansen Method\nKD2SFCA Method\nSAM Method"
+  },
+  {
+    "objectID": "overview.html#literature-review",
+    "href": "overview.html#literature-review",
+    "title": "Overview",
+    "section": "8 Literature Review",
+    "text": "8 Literature Review\n\nImproving geographical accessibility modelling for operational use by local health actors - A case study\n\nSummary\n\nThe study developed precise, context-specific estimates of geographical accessibility to care in a rural district of Madagascar to help with the design and implementation of interventions that improve access for remote populations\n\nLearning Points\n\nData collection method - estimated shortest routes from every household in the district to the nearest primary health care centre and community health site with the Open Source Routing Machine (OSRM) tool\n\nLinking back to our project\n\nData collection method - try an OSRM tool or scripting to get distance\n\n\n\n\nSpatiotemporal characteristics and driving forces of terrorist attacks in Belt and Road regions\n\nSummary\n\nThe study used the terrorism-related spatial points to analyse the driving forces behind terrorist attacks in BRI countries. Crucial information like the days of the week with the most number of terrorist attacks are included. The most frequent types of terrorist attacks could be inferred too.\nThis study used spatiotemporal characteristics to understand the distribution of terrorist attacks and the types. Additionally, Fragile States Index was used for a driving-force analysis (GeoDetecter was also used to explore the drivers of terrorist attacks). The terrorist attacks were divided into different time frames for analysis too.\n\nLearning Points\n\nThe use of spatiotemporal analysis + Fragile States Index to determine the driving force behind the attacks. Conclusions derived from the paper are: “security apparatus”, “human flight and brain drain” → make use of geographical data + Fragile States Index to gain a more abstract like insight on world events\n\nLinking back to the project\n\nWe allow the user to select the country of their choice and see the terrorism spread, types of terrorism that are prominent, indicate the driving forces for such terrorism and suggest ways to protect themselves"
+  },
+  {
+    "objectID": "overview.html#storyboard",
+    "href": "overview.html#storyboard",
+    "title": "Overview",
+    "section": "9 Storyboard",
+    "text": "9 Storyboard"
+  },
+  {
+    "objectID": "overview.html#application-architecture",
+    "href": "overview.html#application-architecture",
+    "title": "Overview",
+    "section": "10 Application Architecture",
+    "text": "10 Application Architecture"
+  },
+  {
+    "objectID": "overview.html#timeline",
+    "href": "overview.html#timeline",
+    "title": "Overview",
+    "section": "11 Timeline",
+    "text": "11 Timeline"
   }
 ]

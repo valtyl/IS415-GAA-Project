@@ -5,9 +5,10 @@ website:
   title: "IS415-GAA-Project"
   navbar:
     right:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: https://github.com/valtyl/IS415-GAA-Project
+        text: Github
 
 format:
   html:
