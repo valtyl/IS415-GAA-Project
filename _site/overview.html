@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>IS415-GAA-Project - Overview</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">IS415-GAA-Project</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/valtyl/IS415-GAA-Project">
+ <span class="menu-text">Github</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#theme" id="toc-theme" class="nav-link active" data-scroll-target="#theme">1 Theme</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">2 Abstract</a></li>
+  <li><a href="#problem-motivation" id="toc-problem-motivation" class="nav-link" data-scroll-target="#problem-motivation">3 Problem &amp; Motivation</a></li>
+  <li><a href="#project-objectives" id="toc-project-objectives" class="nav-link" data-scroll-target="#project-objectives">4 Project Objectives</a></li>
+  <li><a href="#main-features" id="toc-main-features" class="nav-link" data-scroll-target="#main-features">5 Main Features</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">6 Data Sources</a></li>
+  <li><a href="#approach-methodology" id="toc-approach-methodology" class="nav-link" data-scroll-target="#approach-methodology">7 Approach / Methodology</a></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">8 Literature Review</a>
+  <ul class="collapse">
+  <li><a href="#improving-geographical-accessibility-modelling-for-operational-use-by-local-health-actors---a-case-study" id="toc-improving-geographical-accessibility-modelling-for-operational-use-by-local-health-actors---a-case-study" class="nav-link" data-scroll-target="#improving-geographical-accessibility-modelling-for-operational-use-by-local-health-actors---a-case-study">Improving geographical accessibility modelling for operational use by local health actors - A case study</a></li>
+  <li><a href="#spatiotemporal-characteristics-and-driving-forces-of-terrorist-attacks-in-belt-and-road-regions" id="toc-spatiotemporal-characteristics-and-driving-forces-of-terrorist-attacks-in-belt-and-road-regions" class="nav-link" data-scroll-target="#spatiotemporal-characteristics-and-driving-forces-of-terrorist-attacks-in-belt-and-road-regions">Spatiotemporal characteristics and driving forces of terrorist attacks in Belt and Road regions</a></li>
+  </ul></li>
+  <li><a href="#storyboard" id="toc-storyboard" class="nav-link" data-scroll-target="#storyboard">9 Storyboard</a></li>
+  <li><a href="#application-architecture" id="toc-application-architecture" class="nav-link" data-scroll-target="#application-architecture">10 Application Architecture</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">11 Timeline</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Overview</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="theme" class="level2">
+<h2 class="anchored" data-anchor-id="theme">1 Theme</h2>
+<p>We would like to explore 2 themes:</p>
+<ol type="1">
+<li>Spatial Point Patterns Analysis</li>
+<li>Geographical Accessibility</li>
+</ol>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">2 Abstract</h2>
+<p>Spatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events such as crime, traffic accidents, diseases, etc. Thus, we would be able to plan after the analysis and investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.</p>
+<p>Analysis on geographical accessibility can allow us to model existing data to figure how accessible places are in comparison with one another. This helps us in discovering areas that are less accessible and allows us to be able to prioritise improving the geographical accessibility for those areas. A relevant topic would be the analysis on geographical accessibility to health facilities which can be crucial especially when the situation is life threatening.</p>
+</section>
+<section id="problem-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="problem-motivation">3 Problem &amp; Motivation</h2>
+<p>Geographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more.</p>
+<p>The aim of our project is to create a Shiny web application that will enable users to upload their data and help them with the geographical analysis, in particular spatial point patterns analysis and analysis on geographical accessibility. As such, one does not need to be technically trained to do these types of analysis.</p>
+</section>
+<section id="project-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="project-objectives">4 Project Objectives</h2>
+<p>In this project, we would like our Shiny web application to help users:</p>
+<ol type="1">
+<li>visualise distributions and realise the benefits of spatial point patterns analysis</li>
+<li>conduct spatial point patterns analysis (Kernel density estimation and G/F/K/L functions)</li>
+<li>model geographical accessibility (Hansen/KD2SFCA/SAM methods)</li>
+<li>use all the insights gathered from the analysis and models to make practical decisions</li>
+</ol>
+</section>
+<section id="main-features" class="level2">
+<h2 class="anchored" data-anchor-id="main-features">5 Main Features</h2>
+<p>The main features for the analytical tools are:</p>
+<ul>
+<li>Spatial Point Patterns Analysis
+<ul>
+<li>Filters
+<ul>
+<li>Different variables for analysis</li>
+<li>Various bandwidth selection methods (diggle, CvL, scott, ppl)</li>
+<li>Various Kernel Methods (gaussian, epanechnikov, quartic, disc)</li>
+<li>Various Statistical Functions (G/F/K/L functions)</li>
+</ul></li>
+<li>Sliders
+<ul>
+<li>For fixed bandwidth selection method</li>
+<li>Number of simulations</li>
+</ul></li>
+</ul></li>
+<li>Geographical Accessibility
+<ul>
+<li>Filters
+<ul>
+<li>Various modelling and visualising methods (Hansen/KD2SFCA/SAM)</li>
+</ul></li>
+<li>Sliders
+<ul>
+<li>Number of classes</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">6 Data Sources</h2>
+<p>Spatial Point Patterns Analysis</p>
+<ul>
+<li><a href="https://catalog.data.gov/dataset/part-1-crime-data-2b9ba">Crime in Baltimore</a></li>
+<li><a href="https://www.start.umd.edu/gtd/search/Results.aspx?region=">Terrorism Acts</a></li>
+</ul>
+<p>Geographical Accessibility</p>
+<ul>
+<li><a href="https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa">Health facilities in Africa, Burundi</a></li>
+</ul>
+</section>
+<section id="approach-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="approach-methodology">7 Approach / Methodology</h2>
+<ul>
+<li>Data Preparation
+<ul>
+<li>Gather data from various sources</li>
+<li>Import geospatial and aspatial data</li>
+<li>Data wrangling</li>
+</ul></li>
+<li>Exploratory Data Analysis
+<ul>
+<li>Visualisation of the data</li>
+<li>Checking for outliers, anomalies, missing values, noise</li>
+<li>Further data wrangling (if necessary)</li>
+</ul></li>
+<li>Spatial Point Patterns Analysis
+<ul>
+<li>First-order analysis
+<ul>
+<li>Kernel Density Estimation</li>
+</ul></li>
+<li>Second-order analysis
+<ul>
+<li>G Function</li>
+<li>F Function</li>
+<li>K Function</li>
+<li>L Function</li>
+</ul></li>
+</ul></li>
+<li>Geographical Accessibility
+<ul>
+<li>Hansen Method</li>
+<li>KD2SFCA Method</li>
+<li>SAM Method</li>
+</ul></li>
+</ul>
+</section>
+<section id="literature-review" class="level2">
+<h2 class="anchored" data-anchor-id="literature-review">8 Literature Review</h2>
+<section id="improving-geographical-accessibility-modelling-for-operational-use-by-local-health-actors---a-case-study" class="level3">
+<h3 class="anchored" data-anchor-id="improving-geographical-accessibility-modelling-for-operational-use-by-local-health-actors---a-case-study"><a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-020-00220-6">Improving geographical accessibility modelling for operational use by local health actors - A case study</a></h3>
+<ul>
+<li>Summary
+<ul>
+<li>The study developed precise, context-specific estimates of geographical accessibility to care in a rural district of Madagascar to help with the design and implementation of interventions that improve access for remote populations</li>
+</ul></li>
+<li>Learning Points
+<ul>
+<li>Data collection method - estimated shortest routes from every household in the district to the nearest primary health care centre and community health site with the Open Source Routing Machine (OSRM) tool</li>
+</ul></li>
+<li>Linking back to our project
+<ul>
+<li>Data collection method - try an OSRM tool or scripting to get distance</li>
+</ul></li>
+</ul>
+</section>
+<section id="spatiotemporal-characteristics-and-driving-forces-of-terrorist-attacks-in-belt-and-road-regions" class="level3">
+<h3 class="anchored" data-anchor-id="spatiotemporal-characteristics-and-driving-forces-of-terrorist-attacks-in-belt-and-road-regions"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7951843/">Spatiotemporal characteristics and driving forces of terrorist attacks in Belt and Road regions</a></h3>
+<ul>
+<li>Summary
+<ul>
+<li>The study used the terrorism-related spatial points to analyse the driving forces behind terrorist attacks in BRI countries. Crucial information like the days of the week with the most number of terrorist attacks are included. The most frequent types of terrorist attacks could be inferred too.</li>
+<li>This study used spatiotemporal characteristics to understand the distribution of terrorist attacks and the types. Additionally, Fragile States Index was used for a driving-force analysis (GeoDetecter was also used to explore the drivers of terrorist attacks). The terrorist attacks were divided into different time frames for analysis too.</li>
+</ul></li>
+<li>Learning Points
+<ul>
+<li>The use of spatiotemporal analysis + Fragile States Index to determine the driving force behind the attacks. Conclusions derived from the paper are: “security apparatus”, “human flight and brain drain” → make use of geographical data + Fragile States Index to gain a more abstract like insight on world events</li>
+</ul></li>
+<li>Linking back to the project
+<ul>
+<li>We allow the user to select the country of their choice and see the terrorism spread, types of terrorism that are prominent, indicate the driving forces for such terrorism and suggest ways to protect themselves</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="storyboard" class="level2">
+<h2 class="anchored" data-anchor-id="storyboard">9 Storyboard</h2>
+</section>
+<section id="application-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="application-architecture">10 Application Architecture</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gaa-application-architecture.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="timeline" class="level2">
+<h2 class="anchored" data-anchor-id="timeline">11 Timeline</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

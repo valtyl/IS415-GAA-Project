@@ -2,8 +2,12 @@
 title: "About"
 ---
 
-About this site
+## IS415 Geospatial Analytics & Applications Project
 
-```{r}
-1 + 1
-```
+by:
+
+-   Tan Yan Lin, Valencia
+-   Kumarapandian Yashicaramya
+-   Derek Poh Yong Jie
+
+This project is done for IS415 Geospatial Analytics & Applications, a module in Singapore Management University with the guidance of Professor Kam Tin Seong.
