@@ -48,6 +48,7 @@ The main features for the analytical tools are:
         -   Various modelling and visualising methods (Hansen/KD2SFCA/SAM)
     -   Sliders
         -   Number of classes
+        -   Distance
 
 ## 6 Data Sources
 
@@ -106,8 +107,32 @@ Geographical Accessibility
 
 ## 9 Storyboard
 
+Home Page
+
+![](images/homepage.png){fig-align="center"}
+
+Spatial Point Patterns Analysis Page
+
+![](images/sppa_kde1.png){fig-align="center"}
+
+![](images/sppa_kde2.png){fig-align="center"}
+
+![](images/sppa_fn.png){fig-align="center"}
+
+Geographical Accessibility Page
+
+![](images/ga1.png){fig-align="center"}
+
+![](images/ga2.png){fig-align="center"}
+
+About Page
+
+![](images/about.png){fig-align="center"}
+
 ## 10 Application Architecture
 
 ![](images/gaa-application-architecture.png){fig-align="center"}
 
 ## 11 Timeline
+
+![](images/timeline.jpg){fig-align="center"}
