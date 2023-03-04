@@ -1,5 +1,5 @@
 ---
-title: "IS415-GAA-Project"
+title: "Spatial Point Patterns Analysis & Geographical Accessibility"
 ---
 
 

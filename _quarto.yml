@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "IS415-GAA-Project"
+  title: "Tmappers"
   navbar:
     right:
       - href: about.qmd
