@@ -208,19 +208,20 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="data-sources">6 Data Sources</h2>
 <p>Spatial Point Patterns Analysis</p>
 <ul>
-<li><a href="http://insideairbnb.com/get-the-data">Airbnb Locations in Singapore</a></li>
-<li><a href="https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station">MRT Stations in Singapore</a> / <a href="https://gist.github.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa">Alternative Dataset</a></li>
-<li><a href="https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=bus%20stop">Bus Stops in Singapore</a></li>
-<li><a href="https://data.gov.sg/dataset/tourist-attractions">Tourist Attractions in Singapore</a></li>
-<li><a href="https://github.com/ValaryLim/Mall-Coordinates-Web-Scraper">Shopping Malls in Singapore</a></li>
+<li>URA 2019 Master Plan Planning Subzone Boundary Data (.shp) - By Prof Kam in In Class Ex 9</li>
+<li><a href="http://insideairbnb.com/get-the-data">Airbnb Locations in Singapore</a> (.csv) - We will get the point events via the longitude and latitude</li>
+<li><a href="https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station">MRT Stations in Singapore</a> (.shp) / <a href="https://gist.github.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa">Alternative Dataset</a> (.geojson)</li>
+<li><a href="https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=bus%20stop">Bus Stops in Singapore</a> (.shp)</li>
+<li><a href="https://data.gov.sg/dataset/tourist-attractions">Tourist Attractions in Singapore</a> (.shp)</li>
+<li><a href="https://github.com/ValaryLim/Mall-Coordinates-Web-Scraper">Shopping Malls in Singapore</a> (.csv) - We will use this list of shopping mall names to get the point events using OneMapSG API</li>
 <li><a href="https://shopsinsg.com/7-eleven-convenience-stores-in-singapore.html">7-11 Stores in Singapore</a> - We will extract the list of stores (name, address, postal) into xlsx, then locate their point events using OneMapSG API</li>
-<li><a href="https://data.gov.sg/dataset/hotels">Hotel Locations in Singapore</a></li>
+<li><a href="https://data.gov.sg/dataset/hotels">Hotel Locations in Singapore</a> (.kml)</li>
 <li><a href="https://www.easyuni.sg/singapore/all/all/all-levels/">Universities and Colleges in Singapore</a> - We will extract the list of universities and colleges (name) into xlsx, then locate their point events using OneMapSG API</li>
 </ul>
 <p>Network-Constrained Spatial Point Patterns Analysis</p>
 <ul>
-<li><a href="https://datamall.lta.gov.sg/content/datamall/en/static-data.html#Whole%20Island">Road Network of Singapore</a> (Road Section Line)</li>
-<li><a href="http://insideairbnb.com/get-the-data">Airbnb locations in Singapore</a></li>
+<li><a href="https://datamall.lta.gov.sg/content/datamall/en/static-data.html#Whole%20Island">Road Network of Singapore</a> (Road Section Line) (.shp)</li>
+<li><a href="http://insideairbnb.com/get-the-data">Airbnb locations in Singapore</a> (.csv) - We will get the point events via the longitude and latitude</li>
 </ul>
 </section>
 <section id="approach-methodology" class="level2">
@@ -279,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>ESDA (to describe spatial distribution + quantitative models)
 <ul>
-<li>For quantitative models under ESDA, the paper covered Global Moran's I statistic and the Anselin Local Moran's I (LISA) statistic to measure spatial autocorrelation.</li>
+<li>For quantitative models under ESDA, the paper covered Global Moran’s I statistic and the Anselin Local Moran’s I (LISA) statistic to measure spatial autocorrelation.</li>
 </ul></li>
 <li>(Could consider if we have a lot of time - but not covered in class) Distance between points eg. the city center and Hollywood was calculated using GIS tools. The POI (point of interest) is a specific point location that someone may find useful or interesting, which to some extent can be used to determine the attractiveness of a place. The POI data were obtained from GEOFABRIK (http://www.geofabrik.de/), where OpenStreetMap data was collected, showing a total of 5,424 POI in Los Angeles</li>
 </ul></li>
@@ -333,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><img src="images/gaa-proposal-1.png" class="img-fluid"></li>
 </ul></li>
-<li><strong>*** for the EXTRA POINT</strong>, we're thinking of working on this once the other parts of the project have been completed. Since ANN hasn't been covered in class, we were thinking to implement it and draw comparisons with our usual Global Moran's I statistic. Question to prof: Is this extra point okay?</li>
+<li><strong>*** for the EXTRA POINT</strong>, we’re thinking of working on this once the other parts of the project have been completed. Since ANN hasn’t been covered in class, we were thinking to implement it and draw comparisons with our usual Global Moran’s I statistic. Question to prof: Is this extra point okay?</li>
 </ul></li>
 </ul>
 </section>
