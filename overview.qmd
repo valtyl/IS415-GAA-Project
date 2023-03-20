@@ -117,9 +117,7 @@ Network-Constrained Spatial Point Patterns Analysis
     -   PPA plays an important role in conducting exploratory analysis on point data
     -   Commonly used PPA methods are 
         -   descriptive statistics, 
-
         -   distance-based measures (nearest-neighbour distance, distance functions) 
-
         -   and density-based measures (Quadrat density, Kernel density).
 -   Linking Back to the Project
     -   Like the study, we can implement distance-based measures like the distance functions (G/F/K Function) and also density-based measures (Kernel density) for our Spatial Point Patterns Analysis 
@@ -135,11 +133,8 @@ Network-Constrained Spatial Point Patterns Analysis
     -   ANN uses the distance between each point entity and its closest neighbouring entity to predict if the point pattern is random, clustered or dispersed.
 -   Linking Back to the Project
     -   We can implement cross K function to investigate the location of Airbnbs are influenced by the road network
-
     -   EXTRA POINT: We could use the ANN ratio (average nearest neighbour ratio) to reveal if a point pattern is a clustered distribution. If the ratio \>1, we can conclude that the pattern is more dispersed than random. A value of 1 indicates a random distribution. To check the statistical significance of the ANN ratio, we will calculate the z-score in order to conclude confidently if the pattern is indeed random, clustered or dispersion.
-
         -   ![](images/gaa-proposal-1.png)
-
     -   **\*\*\* for the EXTRA POINT**, we\'re thinking of working on this once the other parts of the project have been completed. Since ANN hasn\'t been covered in class, we were thinking to implement it and draw comparisons with our usual Global Moran\'s I statistic. Question to prof: Is this extra point okay?
 
 ## 9 Storyboard
