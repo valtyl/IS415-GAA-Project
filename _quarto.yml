@@ -4,7 +4,7 @@ project:
 website:
   title: "GeoNinjas"
   navbar:
-    logo: images/stitch.jpg
+    logo: images/logo.png
     right:
       - href: about.qmd
         text: About

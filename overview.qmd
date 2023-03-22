@@ -140,27 +140,35 @@ Network-Constrained Spatial Point Patterns Analysis
 
 ## 9 Storyboard
 
-Home Page
+### Home Page
 
-![](images/homepage.png){fig-align="center"}
+![](images/1.png){fig-align="center"}
 
-Spatial Point Patterns Analysis Page
+### Spatial Point Patterns Analysis Page
 
-![](images/sppa_kde1.png){fig-align="center"}
+![](images/2.png){fig-align="center"}
 
-![](images/sppa_kde2.png){fig-align="center"}
+![](images/3.png){fig-align="center"}
 
-![](images/sppa_fn.png){fig-align="center"}
+![](images/4.png){fig-align="center"}
 
-Geographical Accessibility Page
+![](images/5.png){fig-align="center"}
 
-![](images/ga1.png){fig-align="center"}
+![](images/6.png){fig-align="center"}
 
-![](images/ga2.png){fig-align="center"}
+![](images/7.png){fig-align="center"}
 
-About Page
+![](images/8.png){fig-align="center"}
 
-![](images/about.png){fig-align="center"}
+### Network Constrained Spatial Point Patterns Analysis Page
+
+![](images/9.png){fig-align="center"}
+
+![](images/10.png){fig-align="center"}
+
+### About Page
+
+![](images/11.png)
 
 ## 10 Application Architecture
 
@@ -168,4 +176,4 @@ About Page
 
 ## 11 Timeline
 
-![](images/timeline.jpg){fig-align="center"}
+![](images/gaa-proj-timeline.jpg){fig-align="center"}
