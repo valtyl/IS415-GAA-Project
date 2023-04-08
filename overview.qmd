@@ -61,7 +61,7 @@ Spatial Point Patterns Analysis
 -   [Airbnb Locations in Singapore](http://insideairbnb.com/get-the-data) (.csv) - We will get the point events via the longitude and latitude
 -   [MRT Stations in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station) (.shp) / [Alternative Dataset](https://gist.github.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa) (.geojson)
 -   [Bus Stops in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=bus%20stop) (.shp)
--   [Tourist Attractions in Singapore](https://data.gov.sg/dataset/tourist-attractions) (.shp)
+-   [Tourist Attractions in Singapore](https://www.onemap.gov.sg/main/v2/themes) (.shp)
 -   [Shopping Malls in Singapore](https://github.com/ValaryLim/Mall-Coordinates-Web-Scraper) (.csv) - We will use this list of shopping mall names to get the point events using OneMapSG API
 -   [7-11 Stores in Singapore](https://shopsinsg.com/7-eleven-convenience-stores-in-singapore.html) - We will extract the list of stores (name, address, postal) into xlsx, then locate their point events using OneMapSG API
 -   [Hotel Locations in Singapore](https://data.gov.sg/dataset/hotels) (.kml)
