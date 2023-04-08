@@ -1,0 +1,13 @@
+name: IS415-GAA-Shiny
+title: IS415-GAA-Shiny
+username:
+account: valtyl
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8738100
+bundleId: 7062736
+url: https://valtyl.shinyapps.io/IS415-GAA-Shiny/
+when: 1680897955.53534
+lastSyncTime: 1680897955.53536
+asMultiple: FALSE
+asStatic: FALSE
