@@ -7,6 +7,6 @@ title: "Spatial Point Patterns Analysis & Geographical Accessibility"
 
 ### Research Paper
 
-### Shiny App
+### [Shiny App](https://valtyl.shinyapps.io/IS415-GAA-Shiny/)
 
-### Poster
+### [Poster](poster.html)
