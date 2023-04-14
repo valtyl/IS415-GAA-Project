@@ -10,8 +10,21 @@
 library(shiny)
 library(bslib)
 library(shinycssloaders)
+library(readxl)
+library(httr)
+library(jsonlite)
+library(maptools)
+library(sf)
+library(sfdep)
+library(raster)
+library(spatstat)
+library(spNetwork)
+library(rgdal)
+library(sp)
+library(tmap)
+library(tidyverse)
 
-pacman::p_load(readxl, httr, jsonlite, maptools, sf, sfdep, raster, spatstat, spNetwork, rgdal, sp, tmap, tidyverse)
+# pacman::p_load(readxl, httr, jsonlite, maptools, sf, sfdep, raster, spatstat, spNetwork, rgdal, sp, tmap, tidyverse)
 
 options(spinner.color="#0275D8", spinner.color.background="#ffffff", spinner.size=2)
 
@@ -163,33 +176,33 @@ ui <- fluidPage(
                         "The aim of our project is to create a Shiny web application that will enable users to upload their data and help them with the geographical analysis, in particular spatial point patterns analysis and analysis on geographical accessibility. As such, one does not need to be technically trained to do these types of analysis.
                         ")
              ),
-             # tabPanel("Visualisation",
-             #          titlePanel("Visualisation by Zone"),
-             # 
-             #          fluidRow(
-             #            # Sidebar
-             #            sidebarLayout(
-             # 
-             #              sidebarPanel(
-             #                selectInput(
-             #                  "PPPInput",
-             #                  "Zone",
-             #                  # label = ACTUAL backend input
-             #                  choices = c("Central Region", "Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-             #                  selected = "Central Region",
-             #                  multiple = FALSE
-             #                )
-             #              ),
-             # 
-             #              # Show a plot of the generated distribution
-             #              mainPanel(
-             #                tabsetPanel(type = "tabs",
-             #                            tabPanel("Plot", withSpinner(plotOutput("PPPPlot", width="100%", height=400), type=2))
-             #                            )
-             #              )
-             #            )
-             #          )
-             #  ),
+             tabPanel("Visualisation",
+                      titlePanel("Visualisation by Zone"),
+
+                      fluidRow(
+                        # Sidebar
+                        sidebarLayout(
+
+                          sidebarPanel(
+                            selectInput(
+                              "PPPInput",
+                              "Zone",
+                              # label = ACTUAL backend input
+                              choices = c("Central Region", "Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                              selected = "Central Region",
+                              multiple = FALSE
+                            )
+                          ),
+
+                          # Show a plot of the generated distribution
+                          mainPanel(
+                            tabsetPanel(type = "tabs",
+                                        tabPanel("Plot", withSpinner(plotOutput("PPPPlot", width="100%", height=400), type=2))
+                                        )
+                          )
+                        )
+                      )
+              ),
              tabPanel("SPPA",
                       # Application title
                       titlePanel("Spatial Point Patterns Analysis"),
@@ -299,8 +312,8 @@ ui <- fluidPage(
                                         tabPanel("Kernel Density Estimation", value = 'KDE', withSpinner(plotOutput("mapPlot", width="100%", height=400), type=2)),
                                         tabPanel("G Function", value = 'GFunction', withSpinner(plotOutput("GFunction", width="100%", height=400), type=2)),
                                         tabPanel("F Function", value = 'FFunction', withSpinner(plotOutput("FFunction", width="100%", height=400), type=2)),
-                                        tabPanel("K Function", value = 'KFunction', withSpinner(plotOutput("KFunction", width="100%", height=400), type=2)),
-                                        tabPanel("L Function", value = 'LFunction', withSpinner(plotOutput("LFunction", width="100%", height=400), type=2)),
+                                        # tabPanel("K Function", value = 'KFunction', withSpinner(plotOutput("KFunction", width="100%", height=400), type=2)),
+                                        # tabPanel("L Function", value = 'LFunction', withSpinner(plotOutput("LFunction", width="100%", height=400), type=2)),
                                         tabPanel("K Cross Function", value = 'KCross', withSpinner(plotOutput("KCross", width="100%", height=400), type=2)),
                                         tabPanel("L Cross Function", value = 'LCross', withSpinner(plotOutput("LCross", width="100%", height=400), type=2)),
                                         id = 'tabSelected')
@@ -430,33 +443,33 @@ ui <- fluidPage(
 # Define server logic 
 server <- function(input, output, session) {
   # use renderPlot() for STATIC map
-  # PPPplot <- eventReactive(input$PPPInput, {
-  # 
-  #   zone <- switch(input$PPPInput,
-  #                  "Central Region" = mpsz_sf[mpsz_sf$REGION_N == "CENTRAL REGION",],
-  #                  "Kallang" = mpsz_sf[mpsz_sf$PLN_AREA_N == "KALLANG",],
-  #                  "Downtown Core" = mpsz_sf[mpsz_sf$PLN_AREA_N == "DOWNTOWN CORE",],
-  #                  "Outram" = mpsz_sf[mpsz_sf$PLN_AREA_N == "OUTRAM",],
-  #                  "Rochor" = mpsz_sf[mpsz_sf$PLN_AREA_N == "ROCHOR",],
-  #                  "Jurong West" = mpsz_sf[mpsz_sf$PLN_AREA_N == "JURONG WEST",],
-  #                  "Sembawang" = mpsz_sf[mpsz_sf$PLN_AREA_N == "SEMBAWANG",],
-  #                  "Pasir Ris" = mpsz_sf[mpsz_sf$PLN_AREA_N == "PASIR RIS",]
-  #   )
-  # 
-  #   kl_owin <- zone %>%
-  #     as('Spatial') %>%
-  #     as('SpatialPolygons') %>%
-  #     as('owin')
-  #   all_ppp = all_ppp_jit[kl_owin]
-  # 
-  #   plot(all_ppp, cols=c("red", "orange", "darkgrey", "brown", "green", "violet", "blue", "black"))
-  # },
-  # ignoreNULL = FALSE
-  # )
-  # 
-  # output$PPPPlot <- renderPlot({
-  #   PPPplot()
-  # })
+  PPPplot <- eventReactive(input$PPPInput, {
+
+    zone <- switch(input$PPPInput,
+                   "Central Region" = mpsz_sf[mpsz_sf$REGION_N == "CENTRAL REGION",],
+                   "Kallang" = mpsz_sf[mpsz_sf$PLN_AREA_N == "KALLANG",],
+                   "Downtown Core" = mpsz_sf[mpsz_sf$PLN_AREA_N == "DOWNTOWN CORE",],
+                   "Outram" = mpsz_sf[mpsz_sf$PLN_AREA_N == "OUTRAM",],
+                   "Rochor" = mpsz_sf[mpsz_sf$PLN_AREA_N == "ROCHOR",],
+                   "Jurong West" = mpsz_sf[mpsz_sf$PLN_AREA_N == "JURONG WEST",],
+                   "Sembawang" = mpsz_sf[mpsz_sf$PLN_AREA_N == "SEMBAWANG",],
+                   "Pasir Ris" = mpsz_sf[mpsz_sf$PLN_AREA_N == "PASIR RIS",]
+    )
+
+    kl_owin <- zone %>%
+      as('Spatial') %>%
+      as('SpatialPolygons') %>%
+      as('owin')
+    all_ppp = all_ppp_jit[kl_owin]
+
+    plot(all_ppp, cols=c("red", "orange", "darkgrey", "brown", "green", "violet", "blue", "black"))
+  },
+  ignoreNULL = FALSE
+  )
+
+  output$PPPPlot <- renderPlot({
+    PPPplot()
+  })
   
   
 
@@ -599,13 +612,13 @@ server <- function(input, output, session) {
     soFunction()
   })
   ### 1b) to OUTPUT K Function graph
-  output$KFunction <- renderPlot({
-    soFunction()
-  })
+  # output$KFunction <- renderPlot({
+  #   soFunction()
+  # })
   ### 1b) to OUTPUT L Function graph
-  output$LFunction <- renderPlot({
-    soFunction()
-  })
+  # output$LFunction <- renderPlot({
+  #   soFunction()
+  # })
   ### 1b) to OUTPUT K Cross Function graph
   output$KCross <- renderPlot({
     soFunction()
@@ -749,7 +762,7 @@ server <- function(input, output, session) {
                                        width = 1000, 
                                        nsim = input$NetSPPAnumSimulations, 
                                        verbose = FALSE, 
-                                       agg = 100)
+                                       agg = 10000000)
     
     plot(crossk_kallang$plotk)
   },

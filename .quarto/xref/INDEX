@@ -7,5 +7,11 @@
   },
   "overview.qmd": {
     "overview.html": "bbf5efc8"
+  },
+  "IS415-GAA-Shiny/data/geospatial/MPSZ-2019-shp/MPSZ-2019.qmd": {
+    "MPSZ-2019.html": "ece33fc1"
+  },
+  "IS415-GAA-Shiny/poster.qmd": {
+    "poster.html": "28689894"
   }
 }

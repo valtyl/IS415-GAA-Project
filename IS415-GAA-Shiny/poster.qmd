@@ -1,0 +1,7 @@
+---
+title: "Poster"
+---
+
+![](images/GeoNinjas_Poster.jpg){fig-align="center"}
+
+To download our poster as jpeg format, click this link!
