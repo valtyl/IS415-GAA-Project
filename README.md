@@ -1,8 +1,8 @@
 # IS415-GAA-Project
 
-Hello, we are GeoNinjas!
+Hello, we are GeoNinjas! :)
 
-This project is done for IS415 Geospatial Analytics & Applications, a module in Singapore Management University with the guidance of Professor Kam Tin Seong.
+This project is done in AY2022-23 T2 for IS415 Geospatial Analytics & Applications, a module in Singapore Management University with the guidance of Professor Kam Tin Seong.
 
 For more details on our project, click [here](https://is415-gaa-valencia-derek-yashica.netlify.app/).
 
