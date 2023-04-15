@@ -6,8 +6,8 @@ title: "About"
 
 by:
 
--   Tan Yan Lin, Valencia
--   Kumarapandian Yashicaramya
--   Derek Poh Yong Jie
+-   [Tan Yan Lin, Valencia](https://www.linkedin.com/in/valencia-tyl)
+-   [Kumarapandian Yashicaramya](https://www.linkedin.com/in/yashica-k)
+-   [Derek Poh Yong Jie](https://www.linkedin.com/in/derekpoh)
 
 This project is done for IS415 Geospatial Analytics & Applications, a module in Singapore Management University with the guidance of Professor Kam Tin Seong.

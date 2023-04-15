@@ -5,8 +5,10 @@ title: "Spatial Point Patterns Analysis & Geographical Accessibility"
 
 ### [Overview](overview.html)
 
-### Research Paper
+### [Research Paper](https://github.com/valtyl/IS415-GAA-Project/tree/master/others)
 
 ### [Shiny App](https://valtyl.shinyapps.io/IS415-GAA-Shiny/)
+
+### [User Guide](https://github.com/valtyl/IS415-GAA-Project/tree/master/others)
 
 ### [Poster](poster.html)

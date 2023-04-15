@@ -22,15 +22,15 @@ For network constrained spatial point patterns analysis, we would like to discov
 
 Geographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more.
 
-The aim of our project is to create a Shiny web application that will enable users to upload their data and help them with the geographical analysis, in particular spatial point patterns analysis and analysis on geographical accessibility. As such, one does not need to be technically trained to do these types of analysis.
+The aim of our project is to create a Shiny web application that will help users with the geographical analysis of Airbnbs, in particular spatial point patterns analysis. As such, one does not need to be technically trained to conduct the analysis.
 
 ## 4 Project Objectives
 
 In this project, we would like our Shiny web application to help users:
 
 1.  Visualise distributions and realise the benefits of spatial point patterns analysis
-2.  Conduct spatial point patterns analysis (Kernel density estimation and G/F/K/L functions)
-3.  Conduct network constrained spatial point patterns analysis (G/K functions)
+2.  Conduct spatial point patterns analysis (Kernel density estimation, G Function, F Function, Cross K Function, Cross L Function)
+3.  Conduct network constrained spatial point patterns analysis (NetKDE and K Function, Cross K Function)
 4.  Use all the insights gathered from the analysis and models to make practical decisions
 
 ## 5 Main Features
@@ -42,15 +42,17 @@ The main features for the analytical tools are:
         -   Different variables for analysis
         -   Various bandwidth selection methods (diggle, CvL, scott, ppl)
         -   Various Kernel Methods (gaussian, epanechnikov, quartic, disc)
-        -   Various Statistical Functions (G/F/K/L functions)
+        -   Various Statistical Functions (G/F/Cross K/Cross L functions)
     -   Sliders
         -   For fixed bandwidth selection method
+    -   Input
         -   Number of simulations
 -   Network Constrained Spatial Point Patterns Analysis
     -   Filters
+        -   Different variables for analysis
         -   Various kernel methods (gaussian, epanechnikov, quartic, disc)
         -   Various NKDE methods (simple, discontinuous, continuous)
-    -   Sliders
+    -   Input
         -   Number of simulations
 
 ## 6 Data Sources
@@ -59,7 +61,7 @@ Spatial Point Patterns Analysis
 
 -   URA 2019 Master Plan Planning Subzone Boundary Data (.shp) - By Prof Kam in In Class Ex 9
 -   [Airbnb Locations in Singapore](http://insideairbnb.com/get-the-data) (.csv) - We will get the point events via the longitude and latitude
--   [MRT Stations in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station) (.shp) / [Alternative Dataset](https://gist.github.com/raphodn/aca68c6e5b704d021fe0b0d8a376f4aa) (.geojson)
+-   [MRT Stations in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station) (.shp) 
 -   [Bus Stops in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=bus%20stop) (.shp)
 -   [Tourist Attractions in Singapore](https://www.onemap.gov.sg/main/v2/themes) (.shp)
 -   [Shopping Malls in Singapore](https://github.com/ValaryLim/Mall-Coordinates-Web-Scraper) (.csv) - We will use this list of shopping mall names to get the point events using OneMapSG API
@@ -88,13 +90,14 @@ Network-Constrained Spatial Point Patterns Analysis
     -   Second-order analysis
         -   G Function
         -   F Function
-        -   K Function
-        -   L Function
+        -   Cross K Function
+        -   Cross L Function
 -   Network Constrained Spatial Point Patterns Analysis
     -   First-order analysis
         -   NetKDE Analysis
     -   Second-order analysis
         -   K Function
+        -   Cross K Function
 
 ## 8 Literature Review
 
@@ -106,7 +109,7 @@ Network-Constrained Spatial Point Patterns Analysis
 -   Learning Points
     -   ESDA (to describe spatial distribution + quantitative models)
         -   For quantitative models under ESDA, the paper covered Global Moran's I statistic and the Anselin Local Moran's I (LISA) statistic to measure spatial autocorrelation.
-    -   (Could consider if we have a lot of time - but not covered in class) Distance between points eg. the city center and Hollywood was calculated using GIS tools. The POI (point of interest) is a specific point location that someone may find useful or interesting, which to some extent can be used to determine the attractiveness of a place. The POI data were obtained from GEOFABRIK (http://www.geofabrik.de/), where OpenStreetMap data was collected, showing a total of 5,424 POI in Los Angeles
+    -   Distance between points eg. the city center and Hollywood was calculated using GIS tools. The POI (point of interest) is a specific point location that someone may find useful or interesting, which to some extent can be used to determine the attractiveness of a place. The POI data were obtained from [GEOFABRIK](http://www.geofabrik.de/), where OpenStreetMap data was collected, showing a total of 5,424 POI in Los Angeles
 -   Linking Back To The Project
     -   We could use the ESDA methods in the paper and explore the use of POI. The paper showed that Airbnb supply is positively associated with the number of POI.
 
@@ -134,11 +137,11 @@ Network-Constrained Spatial Point Patterns Analysis
     -   ANN uses the distance between each point entity and its closest neighbouring entity to predict if the point pattern is random, clustered or dispersed.
 -   Linking Back to the Project
     -   We can implement cross K function to investigate the location of Airbnbs are influenced by the road network
-    -   EXTRA POINT: We could use the ANN ratio (average nearest neighbour ratio) to reveal if a point pattern is a clustered distribution. If the ratio \>1, we can conclude that the pattern is more dispersed than random. A value of 1 indicates a random distribution. To check the statistical significance of the ANN ratio, we will calculate the z-score in order to conclude confidently if the pattern is indeed random, clustered or dispersion.
+    -   We could use the ANN ratio (average nearest neighbour ratio) to reveal if a point pattern is a clustered distribution. If the ratio \>1, we can conclude that the pattern is more dispersed than random. A value of 1 indicates a random distribution. To check the statistical significance of the ANN ratio, we will calculate the z-score in order to conclude confidently if the pattern is indeed random, clustered or dispersion.
         -   ![](images/gaa-proposal-1.png)
-    -   **\*\*\* for the EXTRA POINT**, we're thinking of working on this once the other parts of the project have been completed. Since ANN hasn't been covered in class, we were thinking to implement it and draw comparisons with our usual Global Moran's I statistic. Question to prof: Is this extra point okay?
 
 ## 9 Storyboard
+The following UI interfaces were designed during our proposal stage on what we envisioned our shiny app to look like. Hence, our shiny app may differ from the following designs.
 
 ### Home Page
 
