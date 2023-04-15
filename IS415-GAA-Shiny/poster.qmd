@@ -1,7 +1,0 @@
----
-title: "Poster"
----
-
-![](images/GeoNinjas_Poster.jpg){fig-align="center"}
-
-To download our poster as jpeg format, click this [link](https://github.com/valtyl/IS415-GAA-Project/blob/master/others/GeoNinjas_Poster.jpg)!

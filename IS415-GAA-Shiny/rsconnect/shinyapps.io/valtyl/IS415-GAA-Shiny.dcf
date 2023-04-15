@@ -5,9 +5,9 @@ account: valtyl
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8738100
-bundleId: 7066360
+bundleId: 7092983
 url: https://valtyl.shinyapps.io/IS415-GAA-Shiny/
-when: 1681011823.34517
-lastSyncTime: 1681011823.34518
+when: 1681558860.12443
+lastSyncTime: 1681558860.12445
 asMultiple: FALSE
 asStatic: FALSE
