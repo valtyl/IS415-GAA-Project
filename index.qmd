@@ -1,5 +1,5 @@
 ---
-title: "Spatial Point Patterns Analysis & Geographical Accessibility"
+title: "Spatial Point Patterns Analysis"
 ---
 
 
