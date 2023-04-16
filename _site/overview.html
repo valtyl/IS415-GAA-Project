@@ -143,9 +143,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#storyboard" id="toc-storyboard" class="nav-link" data-scroll-target="#storyboard">9 Storyboard</a>
   <ul class="collapse">
   <li><a href="#home-page" id="toc-home-page" class="nav-link" data-scroll-target="#home-page">Home Page</a></li>
+  <li><a href="#visualisation-page" id="toc-visualisation-page" class="nav-link" data-scroll-target="#visualisation-page">Visualisation Page</a></li>
+  <li><a href="#tmap-page" id="toc-tmap-page" class="nav-link" data-scroll-target="#tmap-page">Tmap Page</a></li>
   <li><a href="#spatial-point-patterns-analysis-page" id="toc-spatial-point-patterns-analysis-page" class="nav-link" data-scroll-target="#spatial-point-patterns-analysis-page">Spatial Point Patterns Analysis Page</a></li>
   <li><a href="#network-constrained-spatial-point-patterns-analysis-page" id="toc-network-constrained-spatial-point-patterns-analysis-page" class="nav-link" data-scroll-target="#network-constrained-spatial-point-patterns-analysis-page">Network Constrained Spatial Point Patterns Analysis Page</a></li>
-  <li><a href="#about-page" id="toc-about-page" class="nav-link" data-scroll-target="#about-page">About Page</a></li>
   </ul></li>
   <li><a href="#application-architecture" id="toc-application-architecture" class="nav-link" data-scroll-target="#application-architecture">10 Application Architecture</a></li>
   <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">11 Timeline</a></li>
@@ -178,24 +179,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">2 Abstract</h2>
-<p>Spatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events such as crime, traffic accidents, diseases, etc. Thus, we would be able to plan after the analysis and investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.</p>
-<p>Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network.&nbsp;</p>
-<p>To illustrate the functions of our Shiny application, we will use Airbnb as an example.&nbsp;</p>
-<p>For spatial point patterns analysis, we would like to find out if the Airbnb locations in Singapore are randomly distributed throughout the country and if not, where are the locations with higher concentrations of Airbnb. Also, at these locations of higher concentration, do the Airbnb locations co-exist with other point events like train stations, hotels, etc.?&nbsp;</p>
-<p>For network constrained spatial point patterns analysis, we would like to discover whether the distribution of the Airbnb locations are affected by the road network in Singapore. Through these analyses, we can investigate whether the distribution of Airbnb locations in Singapore are affected by point events or the road network.</p>
+<p>Spatial point patterns analysis (SPPA) studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events and we would be able to investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.</p>
+<p>Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis (NetSPPA) which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network.&nbsp;</p>
+<p>The application our team developed allows tourists, policy makers and community members to visualise and analyse the distribution of Airbnb listings in Singapore on a map. The app can be used to help better understand the impact of Airbnbs on the local housing market, improve urban planning and enhance tourism development. With our app, users can select and modify their inputs to conduct both SPPA and NetSPPA.&nbsp;</p>
+<p>For spatial point patterns analysis, we would like to find out if the Airbnb locations in Singapore are randomly distributed throughout the country and if not, where are the locations with higher concentrations of Airbnb. Also, at these locations of higher concentration, do the Airbnb locations co-exist with other point events like train stations, hotels, etc.? Users can use Kernel Density Estimation, G-Function, F-Function, Cross K-Function and Cross L-Function.</p>
+<p>For network constrained spatial point patterns analysis, we would like to discover whether the distribution of the Airbnb locations are affected by the road network in Singapore. Through these analyses, we can investigate whether the distribution of Airbnb locations in Singapore are affected by point events or the road network. Users can use Network Kernel Density Estimation, K-Function and Network Cross K-Function.</p>
 </section>
 <section id="problem-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="problem-motivation">3 Problem &amp; Motivation</h2>
-<p>Geographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more.</p>
-<p>The aim of our project is to create a Shiny web application that will help users with the geographical analysis of Airbnbs, in particular spatial point patterns analysis. As such, one does not need to be technically trained to conduct the analysis.</p>
+<p>Our team decided to develop an application that allows users to analyse Airbnb listings in Singapore and their relationships with other points of interest (MRTs, bus stops etc.) as there is a lack of such apps for Singapore Airbnb listings.</p>
+<p>After the COVID pandemic, with travelling becoming the norm and Singapore as <a href="https://www.straitstimes.com/singapore/singapore-is-2nd-most-visited-city-in-asia-pacific-5th-in-the-world-mastercard">one of the most popular cities to travel to in the world</a>, Singapore Airbnb listing information would deem to be extremely valuable. Moreover, with the <a href="https://www.gov.sg/article/singapore-is-it-really-the-most-expensive-place-to-live">high cost of living in Singapore</a>, many tourists would turn to cheaper accommodation options like Airbnb rentals.</p>
+<p>In order to provide a good accommodation experience for such tourists, it is crucial to analyse the current Airbnb listings in Singapore to study the regions where Airbnb listings are most prevalent and why.</p>
 </section>
 <section id="project-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="project-objectives">4 Project Objectives</h2>
 <p>In this project, we would like our Shiny web application to help users:</p>
 <ol type="1">
 <li>Visualise distributions and realise the benefits of spatial point patterns analysis</li>
-<li>Conduct spatial point patterns analysis (Kernel density estimation, G Function, F Function, Cross K Function, Cross L Function)</li>
-<li>Conduct network constrained spatial point patterns analysis (NetKDE and K Function, Cross K Function)</li>
+<li>Conduct spatial point patterns analysis (Kernel density estimation, G-Function, F-Function, Cross K-Function, Cross L-Function)</li>
+<li>Conduct network constrained spatial point patterns analysis (NetKDE and K-Function, Cross K-Function)</li>
 <li>Use all the insights gathered from the analysis and models to make practical decisions</li>
 </ol>
 </section>
@@ -210,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Different variables for analysis</li>
 <li>Various bandwidth selection methods (diggle, CvL, scott, ppl)</li>
 <li>Various Kernel Methods (gaussian, epanechnikov, quartic, disc)</li>
-<li>Various Statistical Functions (G/F/Cross K/Cross L functions)</li>
+<li>Various Statistical Functions (G/F/Cross K/Cross L-Functions)</li>
 </ul></li>
 <li>Sliders
 <ul>
@@ -279,10 +281,10 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>Second-order analysis
 <ul>
-<li>G Function</li>
-<li>F Function</li>
-<li>Cross K Function</li>
-<li>Cross L Function</li>
+<li>G-Function</li>
+<li>F-Function</li>
+<li>Cross K-Function</li>
+<li>Cross L-Function</li>
 </ul></li>
 </ul></li>
 <li>Network Constrained Spatial Point Patterns Analysis
@@ -293,8 +295,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>Second-order analysis
 <ul>
-<li>K Function</li>
-<li>Cross K Function</li>
+<li>K-Function</li>
+<li>Cross K-Function</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -373,7 +375,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="storyboard" class="level2">
 <h2 class="anchored" data-anchor-id="storyboard">9 Storyboard</h2>
-<p>The following UI interfaces were designed during our proposal stage on what we envisioned our shiny app to look like. Hence, our shiny app may differ from the following designs.</p>
 <section id="home-page" class="level3">
 <h3 class="anchored" data-anchor-id="home-page">Home Page</h3>
 <div class="quarto-figure quarto-figure-center">
@@ -382,18 +383,24 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="spatial-point-patterns-analysis-page" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-point-patterns-analysis-page">Spatial Point Patterns Analysis Page</h3>
+<section id="visualisation-page" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation-page">Visualisation Page</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
+</section>
+<section id="tmap-page" class="level3">
+<h3 class="anchored" data-anchor-id="tmap-page">Tmap Page</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
+</section>
+<section id="spatial-point-patterns-analysis-page" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-point-patterns-analysis-page">Spatial Point Patterns Analysis Page</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/4.png" class="img-fluid figure-img"></p>
@@ -419,9 +426,6 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/8.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-</section>
-<section id="network-constrained-spatial-point-patterns-analysis-page" class="level3">
-<h3 class="anchored" data-anchor-id="network-constrained-spatial-point-patterns-analysis-page">Network Constrained Spatial Point Patterns Analysis Page</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/9.png" class="img-fluid figure-img"></p>
@@ -433,9 +437,23 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="about-page" class="level3">
-<h3 class="anchored" data-anchor-id="about-page">About Page</h3>
-<p><img src="images/11.png" class="img-fluid"></p>
+<section id="network-constrained-spatial-point-patterns-analysis-page" class="level3">
+<h3 class="anchored" data-anchor-id="network-constrained-spatial-point-patterns-analysis-page">Network Constrained Spatial Point Patterns Analysis Page</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="application-architecture" class="level2">

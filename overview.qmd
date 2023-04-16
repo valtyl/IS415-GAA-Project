@@ -8,29 +8,32 @@ The theme we would like to explore is Spatial Point Patterns Analysis.
 
 ## 2 Abstract
 
-Spatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events such as crime, traffic accidents, diseases, etc. Thus, we would be able to plan after the analysis and investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.
+Spatial point patterns analysis (SPPA) studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events and we would be able to investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion. 
 
-Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network. 
+Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis (NetSPPA) which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network. 
 
-To illustrate the functions of our Shiny application, we will use Airbnb as an example. 
+The application our team developed allows tourists, policy makers and community members to visualise and analyse the distribution of Airbnb listings in Singapore on a map. The app can be used to help better understand the impact of Airbnbs on the local housing market, improve urban planning and enhance tourism development. With our app, users can select and modify their inputs to conduct both SPPA and NetSPPA. 
 
-For spatial point patterns analysis, we would like to find out if the Airbnb locations in Singapore are randomly distributed throughout the country and if not, where are the locations with higher concentrations of Airbnb. Also, at these locations of higher concentration, do the Airbnb locations co-exist with other point events like train stations, hotels, etc.? 
+For spatial point patterns analysis, we would like to find out if the Airbnb locations in Singapore are randomly distributed throughout the country and if not, where are the locations with higher concentrations of Airbnb. Also, at these locations of higher concentration, do the Airbnb locations co-exist with other point events like train stations, hotels, etc.? Users can use Kernel Density Estimation, G-Function, F-Function, Cross K-Function and Cross L-Function.
 
-For network constrained spatial point patterns analysis, we would like to discover whether the distribution of the Airbnb locations are affected by the road network in Singapore. Through these analyses, we can investigate whether the distribution of Airbnb locations in Singapore are affected by point events or the road network.
+For network constrained spatial point patterns analysis, we would like to discover whether the distribution of the Airbnb locations are affected by the road network in Singapore. Through these analyses, we can investigate whether the distribution of Airbnb locations in Singapore are affected by point events or the road network. Users can use Network Kernel Density Estimation, K-Function and Network Cross K-Function.
 
 ## 3 Problem & Motivation
 
-Geographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more.
+Our team decided to develop an application that allows users to analyse Airbnb listings in Singapore and their relationships with other points of interest (MRTs, bus stops etc.) as there is a lack of such apps for Singapore Airbnb listings. 
 
-The aim of our project is to create a Shiny web application that will help users with the geographical analysis of Airbnbs, in particular spatial point patterns analysis. As such, one does not need to be technically trained to conduct the analysis.
+After the COVID pandemic, with travelling becoming the norm and Singapore as [one of the most popular cities to travel to in the world](https://www.straitstimes.com/singapore/singapore-is-2nd-most-visited-city-in-asia-pacific-5th-in-the-world-mastercard), Singapore Airbnb listing information would deem to be extremely valuable. Moreover, with the [high cost of living in Singapore](https://www.gov.sg/article/singapore-is-it-really-the-most-expensive-place-to-live), many tourists would turn to cheaper accommodation options like Airbnb rentals. 
+
+In order to provide a good accommodation experience for such tourists, it is crucial to analyse the current Airbnb listings in Singapore to study the regions where Airbnb listings are most prevalent and why.
+
 
 ## 4 Project Objectives
 
 In this project, we would like our Shiny web application to help users:
 
 1.  Visualise distributions and realise the benefits of spatial point patterns analysis
-2.  Conduct spatial point patterns analysis (Kernel density estimation, G Function, F Function, Cross K Function, Cross L Function)
-3.  Conduct network constrained spatial point patterns analysis (NetKDE and K Function, Cross K Function)
+2.  Conduct spatial point patterns analysis (Kernel density estimation, G-Function, F-Function, Cross K-Function, Cross L-Function)
+3.  Conduct network constrained spatial point patterns analysis (NetKDE and K-Function, Cross K-Function)
 4.  Use all the insights gathered from the analysis and models to make practical decisions
 
 ## 5 Main Features
@@ -42,7 +45,7 @@ The main features for the analytical tools are:
         -   Different variables for analysis
         -   Various bandwidth selection methods (diggle, CvL, scott, ppl)
         -   Various Kernel Methods (gaussian, epanechnikov, quartic, disc)
-        -   Various Statistical Functions (G/F/Cross K/Cross L functions)
+        -   Various Statistical Functions (G/F/Cross K/Cross L-Functions)
     -   Sliders
         -   For fixed bandwidth selection method
     -   Input
@@ -88,16 +91,16 @@ Network-Constrained Spatial Point Patterns Analysis
     -   First-order analysis
         -   Kernel Density Estimation
     -   Second-order analysis
-        -   G Function
-        -   F Function
-        -   Cross K Function
-        -   Cross L Function
+        -   G-Function
+        -   F-Function
+        -   Cross K-Function
+        -   Cross L-Function
 -   Network Constrained Spatial Point Patterns Analysis
     -   First-order analysis
         -   NetKDE Analysis
     -   Second-order analysis
-        -   K Function
-        -   Cross K Function
+        -   K-Function
+        -   Cross K-Function
 
 ## 8 Literature Review
 
@@ -141,17 +144,18 @@ Network-Constrained Spatial Point Patterns Analysis
         -   ![](images/gaa-proposal-1.png)
 
 ## 9 Storyboard
-The following UI interfaces were designed during our proposal stage on what we envisioned our shiny app to look like. Hence, our shiny app may differ from the following designs.
 
 ### Home Page
 
 ![](images/1.png){fig-align="center"}
 
-### Spatial Point Patterns Analysis Page
-
+### Visualisation Page
 ![](images/2.png){fig-align="center"}
 
+### Tmap Page
 ![](images/3.png){fig-align="center"}
+
+### Spatial Point Patterns Analysis Page
 
 ![](images/4.png){fig-align="center"}
 
@@ -163,15 +167,18 @@ The following UI interfaces were designed during our proposal stage on what we e
 
 ![](images/8.png){fig-align="center"}
 
-### Network Constrained Spatial Point Patterns Analysis Page
-
 ![](images/9.png){fig-align="center"}
 
 ![](images/10.png){fig-align="center"}
 
-### About Page
+### Network Constrained Spatial Point Patterns Analysis Page
 
-![](images/11.png)
+![](images/11.png){fig-align="center"}
+
+![](images/12.png){fig-align="center"}
+
+![](images/13.png){fig-align="center"}
+
 
 ## 10 Application Architecture
 
