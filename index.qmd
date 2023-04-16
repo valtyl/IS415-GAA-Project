@@ -5,10 +5,10 @@ title: "Spatial Point Patterns Analysis"
 
 ### [Overview](overview.html)
 
-### [Research Paper](https://github.com/valtyl/IS415-GAA-Project/tree/master/others)
+### [Research Paper](https://github.com/valtyl/IS415-GAA-Project/blob/master/others/GeoNinjas_ResearchPaper.pdf)
 
 ### [Shiny App](https://valtyl.shinyapps.io/IS415-GAA-Shiny/)
 
-### [User Guide](https://github.com/valtyl/IS415-GAA-Project/tree/master/others)
+### [User Guide](https://github.com/valtyl/IS415-GAA-Project/blob/master/others/GeoNinjas_UserGuide.pdf)
 
 ### [Poster](poster.html)

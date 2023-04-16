@@ -8,11 +8,11 @@ website:
     left:
       - href: overview.qmd
         text: Overview
-      - href: https://github.com/valtyl/IS415-GAA-Project/tree/master/others
+      - href: https://github.com/valtyl/IS415-GAA-Project/blob/master/others/GeoNinjas_ResearchPaper.pdf
         text: Research Paper
       - href: https://valtyl.shinyapps.io/IS415-GAA-Shiny/
         text: Shiny App
-      - href: https://github.com/valtyl/IS415-GAA-Project/tree/master/others
+      - href: https://github.com/valtyl/IS415-GAA-Project/blob/master/others/GeoNinjas_UserGuide.pdf
         text: User Guide
       - href: poster.qmd
         text: Poster
