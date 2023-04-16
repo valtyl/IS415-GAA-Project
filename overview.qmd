@@ -8,7 +8,7 @@ The theme we would like to explore is Spatial Point Patterns Analysis.
 
 ## 2 Abstract
 
-Spatial point patterns analysis (SPPA) studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events and we would be able to investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion. 
+Spatial point patterns analysis (SPPA) studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events and we would be able to investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion.
 
 Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis (NetSPPA) which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network. 
 
@@ -20,12 +20,11 @@ For network constrained spatial point patterns analysis, we would like to discov
 
 ## 3 Problem & Motivation
 
-Our team decided to develop an application that allows users to analyse Airbnb listings in Singapore and their relationships with other points of interest (MRTs, bus stops etc.) as there is a lack of such apps for Singapore Airbnb listings. 
+Our team decided to develop an application that allows users to analyse Airbnb listings in Singapore and their relationships with other points of interest (MRTs, bus stops etc.) as there is a lack of such apps for Singapore Airbnb listings.
 
-After the COVID pandemic, with travelling becoming the norm and Singapore as [one of the most popular cities to travel to in the world](https://www.straitstimes.com/singapore/singapore-is-2nd-most-visited-city-in-asia-pacific-5th-in-the-world-mastercard), Singapore Airbnb listing information would deem to be extremely valuable. Moreover, with the [high cost of living in Singapore](https://www.gov.sg/article/singapore-is-it-really-the-most-expensive-place-to-live), many tourists would turn to cheaper accommodation options like Airbnb rentals. 
+After the COVID pandemic, with travelling becoming the norm and Singapore as [one of the most popular cities to travel to in the world](https://www.straitstimes.com/singapore/singapore-is-2nd-most-visited-city-in-asia-pacific-5th-in-the-world-mastercard), Singapore Airbnb listing information would deem to be extremely valuable. Moreover, with the [high cost of living in Singapore](https://www.gov.sg/article/singapore-is-it-really-the-most-expensive-place-to-live), many tourists would turn to cheaper accommodation options like Airbnb rentals.
 
 In order to provide a good accommodation experience for such tourists, it is crucial to analyse the current Airbnb listings in Singapore to study the regions where Airbnb listings are most prevalent and why.
-
 
 ## 4 Project Objectives
 
@@ -64,7 +63,7 @@ Spatial Point Patterns Analysis
 
 -   URA 2019 Master Plan Planning Subzone Boundary Data (.shp) - By Prof Kam in In Class Ex 9
 -   [Airbnb Locations in Singapore](http://insideairbnb.com/get-the-data) (.csv) - We will get the point events via the longitude and latitude
--   [MRT Stations in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station) (.shp) 
+-   [MRT Stations in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=train+station) (.shp)
 -   [Bus Stops in Singapore](https://datamall.lta.gov.sg/content/datamall/en/search_datasets.html?searchText=bus%20stop) (.shp)
 -   [Tourist Attractions in Singapore](https://www.onemap.gov.sg/main/v2/themes) (.shp)
 -   [Shopping Malls in Singapore](https://github.com/ValaryLim/Mall-Coordinates-Web-Scraper) (.csv) - We will use this list of shopping mall names to get the point events using OneMapSG API
@@ -104,7 +103,67 @@ Network-Constrained Spatial Point Patterns Analysis
 
 ## 8 Literature Review
 
-### [Spatial Distribution of Airbnb Supply in Los Angeles](https://www.ingentaconnect.com/contentone/cog/ta/2022/00000027/00000004/art00005?crawler=true&mimetype=application/pdf)
+### 8.1 Related Works
+
+#### [Seniors' Works - Spatial Pointers](https://yiling-yu.shinyapps.io/is415_project_shiny_app/)
+
+[Statistical Functions Seniors Employed]{.underline}
+
+When we explored the theme of Spatial Point Patterns Analysis, we were inspired by one of the seniors' Shiny application that allows users to upload their data for SPPA and NetSPPA. For their application, they did SPPA mainly on McDonald's outlets in Singapore and NetSPPA mainly on childcare centres in Punggol, Singapore. We referenced the SPPA section where 4 main types of statistical analysis were used:
+
+-   Kernel Density Estimation: Visualise which area(s) have the highest intensity of points density
+-   G-Function: Determine if the point events resemble clustered, dispersed or random distribution using cumulative frequency distribution of the nearest neighbour distance of a point pattern
+-   F-Function: Determine if the point events resemble clustered, dispersed or random distribution by calculating the minimum distance from a random point to the original points
+-   Cross L-Function: Determine if there is correlation between two types of point events by calculating the number of points in a given distance
+
+[Statistical Functions Our Team Employed]{.underline}
+
+For our application, we similarly implemented the following functions:
+
+-   Kernel Density Estimation: Visualise which location(s) in the selected zone have the highest intensity of Airbnb points density
+-   G-Function: Determine if the Airbnbs in the selected zone resemble clustered, dispersed or random distribution using cumulative frequency distribution of the nearest neighbour distance of a point pattern
+-   F-Function: Determine if the Airbnbs in the selected zone resemble clustered, dispersed or random distribution by calculating the minimum distance from a random point to the original points
+-   Cross K-Function: Determine if there is correlation between two types of point events (eg. Airbnbs & MRTs, Airbnbs & Bus stops etc.) by calculating the number of points in a given distance
+-   Cross L-Function: Determine if there is correlation between two types of point events (eg. Airbnbs & MRTs, Airbnbs & Bus stops etc.) by calculating the number of points in a given distance (Standardised version of Cross K-Function)
+
+[Seniors' Function Implementations VS Our Teams Function Implementations]{.underline}
+
+For the seniors' project, they did not include Cross K-Function which was understandable since Cross K-Function and Cross L-Function are extremely similar - given that the latter was derived from the former through standardisation.
+
+However, for our project, we wanted to include more functions so that technically inclined individuals who are keen to explore the minute differences between the 2 mentioned functions are free to do so.
+
+#### [Seniors' Works - Signal](https://wiki.smu.edu.sg/1819t2is415/Signal_Research_Paper)
+
+[Statistical Network Functions Seniors Employed]{.underline}
+
+When developing our application, we were inspired by one of the seniors' Shiny applications which explored the use of Network-constrained Spatio-temporal Analysis for Traffic Accidents in the UK. In that application, 4 main types of statistical analysis were used:
+
+-   Network-Constrained Kernel Density Estimation: Visualise which segment(s) of the road have the highest intensity of traffic accident points or casualty points along the network
+-   Network-Constrained K-Function: Determine if there is spatial correlation between accident points on a linear network using geometrically corrected K-Function
+-   Network-Constrained Cross K-Function: Determine if there is correlation between accident points and variables selected
+-   Network-Constrained Cross Pair Correlation Function: Determine if there is correlation between accident points and variables selected
+
+[Statistical Network Functions Our Team Employed]{.underline}
+
+For our application, we similarly implemented the following Network-related functions:
+
+-   Network-Constrained Kernel Density Estimation: Visualise which segment(s) of Rochor's street network have the highest intensity of Singapore Airbnb listing points or amenity points (MRT, bus stops etc.) along the network
+-   Network-Constrained K-Function: Determine if there is spatial correlation between Rochor Airbnb listing points on a linear network using geometrically corrected K-Function
+-   Network-Constrained Cross K-Function: Determine if there is correlation between Airbnb listing points in Rochor and amenity variables selected
+
+We focused on Rochor as Rochor has a significant number of Airbnbs since it is the zone with the 4th most number of Airbnbs. Additionally, Rochor has enough point events for the other amenity points (MRT, bus stops, etc.) which will allow us to draw statistical conclusions with the Airbnbs in Rochor. There were other zones with higher numbers of Airbnbs but we did not choose them as they only had 1 point event for the other amenity points which is not enough to draw statistical conclusions especially for Network-Constrained Cross K-Function.
+
+[Seniors' Network Function Implementations VS Our Team's Network Function Implementations]{.underline}
+
+For the seniors' project, since they were analysing accidents, they focused on analysing factors that could affect accident rates in specific regions of the UK. In some of their network features, they had filters to control the time, environment (weather) and casualty.
+
+For our project, since we were analysing Singapore Airbnb listing points, we focused more on studying the different types of amenity points around. This is because for our project, isolating and studying factors like time and weather would be less appropriate as Airbnb listings tend to be much more influenced by factors like amenities instead.
+
+For the seniors' implementation, they implemented less technical adjustments like time, environment (weather) and casualty. Since we wanted our application to be well-used by technically inclined experts, we introduced more technical adjustments. For instance, for the Network-Constrained Kernel Density Estimation under our app's NetSPPA tab, besides allowing users to select different variables (Airbnbs, MRTs, bus stops), we allowed users to control more technical features such as 'Kernel Smoothing Input' and 'Method'. At the bottom of the Network graphs generated, we've also additionally included descriptions to aid the users in interpreting the graphs. This helps less technical users to comprehend the results more easily.
+
+### 8.2 Other Studies
+
+#### [Spatial Distribution of Airbnb Supply in Los Angeles](https://www.ingentaconnect.com/contentone/cog/ta/2022/00000027/00000004/art00005?crawler=true&mimetype=application/pdf)
 
 -   Summary
     -   This study investigates the spatial patterns of Airbnb supply. In the city of Los Angeles during the years 2014 to 2019. This study integrates exploratory spatial data analysis (ESDA) and explores the determinants of spatial patterns of Airbnb supply in 2019 with spatial regression models. The results of the spatial autocorrelation analysis show that the spatial distribution of Airbnb supply in Los Angeles is positively clustered and shows a geographical logistical trend over time.
@@ -116,7 +175,7 @@ Network-Constrained Spatial Point Patterns Analysis
 -   Linking Back To The Project
     -   We could use the ESDA methods in the paper and explore the use of POI. The paper showed that Airbnb supply is positively associated with the number of POI.
 
-### [Point Pattern Analysis on the 1854 cholera outbreak in London](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis)
+#### [Point Pattern Analysis on the 1854 cholera outbreak in London](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis)
 
 -   Summary
     -   This study talks about the methods Point Pattern Analysis (PPA) and focuses on a case study which is the 1854 cholera outbreak in London
@@ -129,7 +188,7 @@ Network-Constrained Spatial Point Patterns Analysis
 -   Linking Back to the Project
     -   Like the study, we can implement distance-based measures like the distance functions (G/F/K Function) and also density-based measures (Kernel density) for our Spatial Point Patterns Analysis 
 
-### [Network constrained and classified spatial pattern analysis of healthcare facilities and their relationship with the road structure: a case study of Thiruvananthapuram city](https://www.researchgate.net/publication/356962311_Network_constrained_and_classified_spatial_pattern_analysis_of_healthcare_facilities_and_their_relationship_with_the_road_structure_a_case_study_of_Thiruvananthapuram_city)
+#### [Network constrained and classified spatial pattern analysis of healthcare facilities and their relationship with the road structure: a case study of Thiruvananthapuram city](https://www.researchgate.net/publication/356962311_Network_constrained_and_classified_spatial_pattern_analysis_of_healthcare_facilities_and_their_relationship_with_the_road_structure_a_case_study_of_Thiruvananthapuram_city)
 
 -   Summary
     -   Network-based location analysis was carried out to find the distribution pattern of the healthcare facilities in Thiruvananthapuram city and also the distribution of healthcare facilities with reference to the network distance (to know whether the distribution pattern of healthcare facilities is clustered or random, whether they tend to follow a speciﬁc direction or whether they are clustered around any speciﬁc point)
@@ -150,9 +209,11 @@ Network-Constrained Spatial Point Patterns Analysis
 ![](images/1.png){fig-align="center"}
 
 ### Visualisation Page
+
 ![](images/2.png){fig-align="center"}
 
 ### Tmap Page
+
 ![](images/3.png){fig-align="center"}
 
 ### Spatial Point Patterns Analysis Page
@@ -178,7 +239,6 @@ Network-Constrained Spatial Point Patterns Analysis
 ![](images/12.png){fig-align="center"}
 
 ![](images/13.png){fig-align="center"}
-
 
 ## 10 Application Architecture
 

@@ -136,9 +136,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#approach-methodology" id="toc-approach-methodology" class="nav-link" data-scroll-target="#approach-methodology">7 Approach / Methodology</a></li>
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">8 Literature Review</a>
   <ul class="collapse">
-  <li><a href="#spatial-distribution-of-airbnb-supply-in-los-angeles" id="toc-spatial-distribution-of-airbnb-supply-in-los-angeles" class="nav-link" data-scroll-target="#spatial-distribution-of-airbnb-supply-in-los-angeles">Spatial Distribution of Airbnb Supply in Los Angeles</a></li>
-  <li><a href="#point-pattern-analysis-on-the-1854-cholera-outbreak-in-london" id="toc-point-pattern-analysis-on-the-1854-cholera-outbreak-in-london" class="nav-link" data-scroll-target="#point-pattern-analysis-on-the-1854-cholera-outbreak-in-london">Point Pattern Analysis on the 1854 cholera outbreak in London</a></li>
-  <li><a href="#network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city" id="toc-network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city" class="nav-link" data-scroll-target="#network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city">Network constrained and classified spatial pattern analysis of healthcare facilities and their relationship with the road structure: a case study of Thiruvananthapuram city</a></li>
+  <li><a href="#related-works" id="toc-related-works" class="nav-link" data-scroll-target="#related-works">8.1 Related Works</a></li>
+  <li><a href="#other-studies" id="toc-other-studies" class="nav-link" data-scroll-target="#other-studies">8.2 Other Studies</a></li>
   </ul></li>
   <li><a href="#storyboard" id="toc-storyboard" class="nav-link" data-scroll-target="#storyboard">9 Storyboard</a>
   <ul class="collapse">
@@ -303,8 +302,59 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="literature-review" class="level2">
 <h2 class="anchored" data-anchor-id="literature-review">8 Literature Review</h2>
-<section id="spatial-distribution-of-airbnb-supply-in-los-angeles" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-distribution-of-airbnb-supply-in-los-angeles"><a href="https://www.ingentaconnect.com/contentone/cog/ta/2022/00000027/00000004/art00005?crawler=true&amp;mimetype=application/pdf">Spatial Distribution of Airbnb Supply in Los Angeles</a></h3>
+<section id="related-works" class="level3">
+<h3 class="anchored" data-anchor-id="related-works">8.1 Related Works</h3>
+<section id="seniors-works---spatial-pointers" class="level4">
+<h4 class="anchored" data-anchor-id="seniors-works---spatial-pointers"><a href="https://yiling-yu.shinyapps.io/is415_project_shiny_app/">Seniors’ Works - Spatial Pointers</a></h4>
+<p><u>Statistical Functions Seniors Employed</u></p>
+<p>When we explored the theme of Spatial Point Patterns Analysis, we were inspired by one of the seniors’ Shiny application that allows users to upload their data for SPPA and NetSPPA. For their application, they did SPPA mainly on McDonald’s outlets in Singapore and NetSPPA mainly on childcare centres in Punggol, Singapore. We referenced the SPPA section where 4 main types of statistical analysis were used:</p>
+<ul>
+<li>Kernel Density Estimation: Visualise which area(s) have the highest intensity of points density</li>
+<li>G-Function: Determine if the point events resemble clustered, dispersed or random distribution using cumulative frequency distribution of the nearest neighbour distance of a point pattern</li>
+<li>F-Function: Determine if the point events resemble clustered, dispersed or random distribution by calculating the minimum distance from a random point to the original points</li>
+<li>Cross L-Function: Determine if there is correlation between two types of point events by calculating the number of points in a given distance</li>
+</ul>
+<p><u>Statistical Functions Our Team Employed</u></p>
+<p>For our application, we similarly implemented the following functions:</p>
+<ul>
+<li>Kernel Density Estimation: Visualise which location(s) in the selected zone have the highest intensity of Airbnb points density</li>
+<li>G-Function: Determine if the Airbnbs in the selected zone resemble clustered, dispersed or random distribution using cumulative frequency distribution of the nearest neighbour distance of a point pattern</li>
+<li>F-Function: Determine if the Airbnbs in the selected zone resemble clustered, dispersed or random distribution by calculating the minimum distance from a random point to the original points</li>
+<li>Cross K-Function: Determine if there is correlation between two types of point events (eg. Airbnbs &amp; MRTs, Airbnbs &amp; Bus stops etc.) by calculating the number of points in a given distance</li>
+<li>Cross L-Function: Determine if there is correlation between two types of point events (eg. Airbnbs &amp; MRTs, Airbnbs &amp; Bus stops etc.) by calculating the number of points in a given distance (Standardised version of Cross K-Function)</li>
+</ul>
+<p><u>Seniors’ Function Implementations VS Our Teams Function Implementations</u></p>
+<p>For the seniors’ project, they did not include Cross K-Function which was understandable since Cross K-Function and Cross L-Function are extremely similar - given that the latter was derived from the former through standardisation.</p>
+<p>However, for our project, we wanted to include more functions so that technically inclined individuals who are keen to explore the minute differences between the 2 mentioned functions are free to do so.</p>
+</section>
+<section id="seniors-works---signal" class="level4">
+<h4 class="anchored" data-anchor-id="seniors-works---signal"><a href="https://wiki.smu.edu.sg/1819t2is415/Signal_Research_Paper">Seniors’ Works - Signal</a></h4>
+<p><u>Statistical Network Functions Seniors Employed</u></p>
+<p>When developing our application, we were inspired by one of the seniors’ Shiny applications which explored the use of Network-constrained Spatio-temporal Analysis for Traffic Accidents in the UK. In that application, 4 main types of statistical analysis were used:</p>
+<ul>
+<li>Network-Constrained Kernel Density Estimation: Visualise which segment(s) of the road have the highest intensity of traffic accident points or casualty points along the network</li>
+<li>Network-Constrained K-Function: Determine if there is spatial correlation between accident points on a linear network using geometrically corrected K-Function</li>
+<li>Network-Constrained Cross K-Function: Determine if there is correlation between accident points and variables selected</li>
+<li>Network-Constrained Cross Pair Correlation Function: Determine if there is correlation between accident points and variables selected</li>
+</ul>
+<p><u>Statistical Network Functions Our Team Employed</u></p>
+<p>For our application, we similarly implemented the following Network-related functions:</p>
+<ul>
+<li>Network-Constrained Kernel Density Estimation: Visualise which segment(s) of Rochor’s street network have the highest intensity of Singapore Airbnb listing points or amenity points (MRT, bus stops etc.) along the network</li>
+<li>Network-Constrained K-Function: Determine if there is spatial correlation between Rochor Airbnb listing points on a linear network using geometrically corrected K-Function</li>
+<li>Network-Constrained Cross K-Function: Determine if there is correlation between Airbnb listing points in Rochor and amenity variables selected</li>
+</ul>
+<p>We focused on Rochor as Rochor has a significant number of Airbnbs since it is the zone with the 4th most number of Airbnbs. Additionally, Rochor has enough point events for the other amenity points (MRT, bus stops, etc.) which will allow us to draw statistical conclusions with the Airbnbs in Rochor. There were other zones with higher numbers of Airbnbs but we did not choose them as they only had 1 point event for the other amenity points which is not enough to draw statistical conclusions especially for Network-Constrained Cross K-Function.</p>
+<p><u>Seniors’ Network Function Implementations VS Our Team’s Network Function Implementations</u></p>
+<p>For the seniors’ project, since they were analysing accidents, they focused on analysing factors that could affect accident rates in specific regions of the UK. In some of their network features, they had filters to control the time, environment (weather) and casualty.</p>
+<p>For our project, since we were analysing Singapore Airbnb listing points, we focused more on studying the different types of amenity points around. This is because for our project, isolating and studying factors like time and weather would be less appropriate as Airbnb listings tend to be much more influenced by factors like amenities instead.</p>
+<p>For the seniors’ implementation, they implemented less technical adjustments like time, environment (weather) and casualty. Since we wanted our application to be well-used by technically inclined experts, we introduced more technical adjustments. For instance, for the Network-Constrained Kernel Density Estimation under our app’s NetSPPA tab, besides allowing users to select different variables (Airbnbs, MRTs, bus stops), we allowed users to control more technical features such as ‘Kernel Smoothing Input’ and ‘Method’. At the bottom of the Network graphs generated, we’ve also additionally included descriptions to aid the users in interpreting the graphs. This helps less technical users to comprehend the results more easily.</p>
+</section>
+</section>
+<section id="other-studies" class="level3">
+<h3 class="anchored" data-anchor-id="other-studies">8.2 Other Studies</h3>
+<section id="spatial-distribution-of-airbnb-supply-in-los-angeles" class="level4">
+<h4 class="anchored" data-anchor-id="spatial-distribution-of-airbnb-supply-in-los-angeles"><a href="https://www.ingentaconnect.com/contentone/cog/ta/2022/00000027/00000004/art00005?crawler=true&amp;mimetype=application/pdf">Spatial Distribution of Airbnb Supply in Los Angeles</a></h4>
 <ul>
 <li>Summary
 <ul>
@@ -325,8 +375,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="point-pattern-analysis-on-the-1854-cholera-outbreak-in-london" class="level3">
-<h3 class="anchored" data-anchor-id="point-pattern-analysis-on-the-1854-cholera-outbreak-in-london"><a href="https://gistbok.ucgis.org/bok-topics/point-pattern-analysis">Point Pattern Analysis on the 1854 cholera outbreak in London</a></h3>
+<section id="point-pattern-analysis-on-the-1854-cholera-outbreak-in-london" class="level4">
+<h4 class="anchored" data-anchor-id="point-pattern-analysis-on-the-1854-cholera-outbreak-in-london"><a href="https://gistbok.ucgis.org/bok-topics/point-pattern-analysis">Point Pattern Analysis on the 1854 cholera outbreak in London</a></h4>
 <ul>
 <li>Summary
 <ul>
@@ -348,8 +398,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city" class="level3">
-<h3 class="anchored" data-anchor-id="network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city"><a href="https://www.researchgate.net/publication/356962311_Network_constrained_and_classified_spatial_pattern_analysis_of_healthcare_facilities_and_their_relationship_with_the_road_structure_a_case_study_of_Thiruvananthapuram_city">Network constrained and classified spatial pattern analysis of healthcare facilities and their relationship with the road structure: a case study of Thiruvananthapuram city</a></h3>
+<section id="network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city" class="level4">
+<h4 class="anchored" data-anchor-id="network-constrained-and-classified-spatial-pattern-analysis-of-healthcare-facilities-and-their-relationship-with-the-road-structure-a-case-study-of-thiruvananthapuram-city"><a href="https://www.researchgate.net/publication/356962311_Network_constrained_and_classified_spatial_pattern_analysis_of_healthcare_facilities_and_their_relationship_with_the_road_structure_a_case_study_of_Thiruvananthapuram_city">Network constrained and classified spatial pattern analysis of healthcare facilities and their relationship with the road structure: a case study of Thiruvananthapuram city</a></h4>
 <ul>
 <li>Summary
 <ul>
@@ -371,6 +421,7 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul></li>
 </ul>
+</section>
 </section>
 </section>
 <section id="storyboard" class="level2">
