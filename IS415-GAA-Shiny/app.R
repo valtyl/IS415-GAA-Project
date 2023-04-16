@@ -56,6 +56,7 @@ network_sf <- network_sf %>% select(c(2))
 hotel_sf <- st_zm(hotel_sf)
 mpsz_sf <- st_make_valid(mpsz_sf)
 sg_sf <- st_make_valid(sg_sf)
+busstop_sf <- st_intersection(busstop_sf, sg_sf)
 
 # with st_set_crs(), we can assign the appropriate ESPG Code
 attr_sf <- st_set_crs(attr_sf, 3414)
@@ -84,11 +85,6 @@ airbnb_ppp_jit <- rjitter(airbnb_ppp,
                           retry=TRUE, 
                           nsim=1, 
                           drop=TRUE)
-
-central_zone <- mpsz_sf[mpsz_sf$REGION_N == "CENTRAL REGION",]
-central_owin <- central_zone %>% as ('Spatial') %>% as ('SpatialPolygons') %>% as ('owin')
-central_airbnb_ppp <- airbnb_ppp_jit[central_owin]
-central_airbnb_ppp.km <- rescale(central_airbnb_ppp, 1000, "km")
 
 kallang_zone <- mpsz_sf[mpsz_sf$PLN_AREA_N == "KALLANG",]
 kallang_owin <- kallang_zone %>% as ('Spatial') %>% as ('SpatialPolygons') %>% as ('owin')
@@ -135,7 +131,7 @@ attr_mp <- attr_mp %>% select(c(2,3))
 
 busstop_mp <- busstop_sf
 busstop_mp$type <- "busstop"
-busstop_mp <- busstop_mp %>% select(c(2,3))
+busstop_mp <- busstop_mp %>% select(c(6,7))
 
 hotel_mp <- hotel_sf
 hotel_mp$type <- "hotel"
@@ -166,9 +162,6 @@ all <- as_Spatial(all_sf)
 all@data$type <- as.factor(all@data$type)
 all_ppp <- as(all, "ppp")
 all_ppp_jit <- rjitter(all_ppp, retry=TRUE, nsim=1, drop=TRUE)
-
-central_all_ppp <- all_ppp_jit[central_owin]
-central_all_ppp_km <- rescale(central_all_ppp, 1000, "km")
 
 kallang_all_ppp <- all_ppp_jit[kallang_owin]
 kallang_all_ppp_km <- rescale(kallang_all_ppp, 1000, "km")
@@ -207,6 +200,7 @@ rochor_mrt <- read_rds("data/rds/rochor_mrt.rds")
 rochor_sevenele <- read_rds("data/rds/rochor_sevenele.rds")
 rochor_unis <- read_rds("data/rds/rochor_unis.rds")
 
+
 # UI
 ui <- fluidPage(
   
@@ -221,14 +215,15 @@ ui <- fluidPage(
                       hr(),
                       br(),
                       h4(strong("Project Description")),
-                      p("Spatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events such as crime, traffic accidents, diseases, etc. Thus, we would be able to plan after the analysis and investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion."),
+                      p("Spatial point patterns analysis studies the distribution of the points, whether the distribution is random or clustered. This form of analysis can be very useful in the evaluation of events and we would be able to investigate whether there are any dependency relationships between different point distributions to make a comparison and conclusion."),
                       p("Another kind of spatial point patterns analysis is called network constrained spatial point patterns analysis which allows us to analyse if the distribution of the spatial point events are affected by a network or whether the spatial point events occur alongside a network. For our Shiny application, we will use Airbnbs as an example."),
                       p("For spatial point patterns analysis, we would like to find out if the Airbnb locations in Singapore are randomly distributed throughout the country and if not, where are the locations with higher concentrations of Airbnbs. Also, at these locations of higher concentration, do the Airbnb locations co-exist with other point events like train stations, hotels, etc.?"),
                       p("For network constrained spatial point patterns analysis, we would like to discover whether the distribution of the Airbnb locations are affected by the road network in Singapore. Through these analyses, we can investigate whether the distribution of Airbnb locations in Singapore are affected by point events or the road network."),
                       br(),
                       h4(strong("Project Motivation")),
-                      p("Geographical data is abundant online for users to use freely. However, many do not know what tool to use or know how to make use of those data since they are in different file formats like geojson, csv, shapefile and more."),
-                      p("The aim of our project is to create a Shiny web application that will help users with the geographical analysis of Airbnbs, in particular spatial point patterns analysis. As such, one does not need to be technically trained to conduct the analysis."),
+                      p("Our team decided to develop an application that allows users to analyse Airbnb listings in Singapore and their relationships with other points of interest (MRTs, bus stops etc.) as there is a lack of such apps for Singapore Airbnb listings."),
+                      p("After the COVID pandemic, with travelling becoming the norm and Singapore as one of the most popular cities to travel to in the world, Singapore Airbnb listing information would deem to be extremely valuable. Moreover, with the high cost of living in Singapore, many tourists would turn to cheaper accommodation options like Airbnb rentals."),
+                      p("In order to provide a good accommodation experience for such tourists, it is crucial to analyse the current Airbnb listings in Singapore to study the regions where Airbnb listings are most prevalent and why."),
                       br(),
                       h4(strong("About our Application")),
                       p("Our application is focused on Airbnbs in Singapore and will assist users with two methods of Point Pattern Analysis:"),
@@ -239,13 +234,13 @@ ui <- fluidPage(
                       br(),
                       p("For SPPA, users will be able to view the kernel density map of Airbnbs in different zones. Here are the zones chosen and the reasons why:"),
                       tags$ul(
-                      tags$li("Kallang - Most Airbnbs (353 Airbnbs)"),
-                      tags$li("Downtown Core - 2nd most Airbnbs (325 Airbnbs)"),
-                      tags$li("Outram - 3rd most Airbnbs (255 Airbnbs)"),
-                      tags$li("Rochor - 4th most Airbnbs (214 Airbnbs)"),
-                      tags$li("Jurong West - High density of private rooms (43 Airbnbs)"),
-                      tags$li("Sembawang - Medium density of shared and private rooms (28 Airbnbs)"),
-                      tags$li("Pasir Ris - Small density of shared and private rooms (20 Airbnbs)")
+                        tags$li("Kallang - Most Airbnbs (353 Airbnbs)"),
+                        tags$li("Downtown Core - 2nd most Airbnbs (325 Airbnbs)"),
+                        tags$li("Outram - 3rd most Airbnbs (255 Airbnbs)"),
+                        tags$li("Rochor - 4th most Airbnbs (214 Airbnbs)"),
+                        tags$li("Jurong West - High density of private rooms (43 Airbnbs)"),
+                        tags$li("Sembawang - Medium density of shared and private rooms (28 Airbnbs)"),
+                        tags$li("Pasir Ris - Small density of shared and private rooms (20 Airbnbs)")
                       ),
                       br(),
                       p("For NetSPPA, we will be focusing on the street network in Rochor. We chose Rochor as Rochor has a significant number of Airbnbs and each type of point events (Tourist Attractions, Bus Stops, Hotels, Shopping Malls, MRTs, 7-11s and Universities) are greater than 5, which will allow us to draw better statistical conclusions than the other zones with too little points. For example, Kallang only has 1 attraction and 1 university hence we will not be able to draw reliable statistical conclusions using Network Cross K-Function."),
@@ -277,7 +272,7 @@ ui <- fluidPage(
                               "PPPInput",
                               "Zone",
                               # label = ACTUAL backend input
-                              choices = c("Central Region", "Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                              choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
                               selected = "Kallang",
                               multiple = FALSE
                             )
@@ -285,10 +280,14 @@ ui <- fluidPage(
                           
                           # Show a plot of the generated distribution
                           mainPanel(
-                            tabsetPanel(type = "tabs",
-                                        tabPanel("Plot", withSpinner(plotOutput("PPPPlot", width="100%", height=400), type=2)),
-                                        p("Default zone is Kallang. To view the distribution of Airbnbs, Tourist Attractions, Bus Stops, Hotels, Shopping Malls, MRTs, 7-11s and Universities in another zone, simply select a different zone!"),
-                                        p("A simple visualisation allows us to view the distribution of the point events, whether they are clustered, dispersed or at random with our eyes. However, if you would like to statistically prove the distribution, head over to the SPPA tab!")
+                            tabsetPanel(
+                              tabPanel("Plot",
+                                       column(12,
+                                              withSpinner(plotOutput("PPPPlot", width="100%", height=400), type=2)),
+                                       p("Default zone is Kallang. To view the distribution of Airbnbs, Tourist Attractions, Bus Stops, Hotels, Shopping Malls, MRTs, 7-11s and Universities in another zone, simply select a different zone!"),
+                                       p("A simple visualisation allows us to view the distribution of the point events, whether they are clustered, dispersed or at random with our eyes. However, if you would like to statistically prove the distribution, head over to the SPPA tab!")
+                              )
+                              
                             )
                           )
                         )
@@ -311,191 +310,190 @@ ui <- fluidPage(
                         tags$li("MRTs - mrt_sf"),
                         tags$li("7-11s - sevenele_sf"),
                         tags$li("Universities - unis_sf")
-                      )
-                      
-                      
                       ),
+                      imageOutput("tmaplegend")
+             ),
              tabPanel("SPPA",
                       # Application title
                       titlePanel("Spatial Point Patterns Analysis"),
                       
                       sidebarLayout(
-                          sidebarPanel(fluid = TRUE, width = 3,
-                          
-                              # If KDE tabPanel is clicked, sidebarPanel below will be shown
-                              conditionalPanel(
-                                  'input.SPPA_var === "SPPA Kernel Density Estimation"',
-                                  selectInput(
-                                      "SPPA_main_var",
-                                      "Zone",
-                                      choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-                                      selected = "Kallang",
-                                      multiple = FALSE
-                                  ),
-                                  selectInput(
-                                      "SPPA_kernel",
-                                      "Kernel Smoothing Input",
-                                      choices = c("Gaussian" = "gaussian",
-                                                  "Epanechnikov" = "epanechnikov",
-                                                  "Quartic" = "quartic",
-                                                  "Disc" = "disc"),
-                                      selected = "gaussian",
-                                      multiple = FALSE
-                                  ),
-                                  radioButtons(
-                                      "SPPA_bandwidth_method",
-                                      "Bandwidth Method",
-                                      choices = c("Auto",
-                                                  "Fixed",
-                                                  "Adaptive"),
-                                      selected = "Auto"
-                                  ),
-                                  conditionalPanel(
-                                      condition = "input.SPPA_bandwidth_method == 'Auto'",
-                                      selectInput(
-                                        "SPPA_bw_auto_var",
-                                        "Automatic Bandwidth Method",
-                                        choices = c("bw.diggle",
-                                                    "bw.CvL",
-                                                    "bw.scott",
-                                                    "bw.ppl"),
-                                        selected = "bw.diggle",
-                                        multiple = FALSE
-                                      )
-                                  ),
-                                  conditionalPanel(
-                                      condition = "input.SPPA_bandwidth_method == 'Fixed'",
-                                      sliderInput(
-                                        "SPPA_bw_fixed_var",
-                                        "Fixed Bandwidth Method (in km)",
-                                        min = 0,
-                                        max = 5,
-                                        step = 0.1,
-                                        value = 1
-                                      )
-                                  ),
-                                  actionButton("SPPA_Run_KDE", "Run Analysis")
-                              ),
-                          
-                              # If G-Function tabPanel is clicked, the sidebarPanel below will be shown
-                              conditionalPanel(
-                                  'input.SPPA_var === "SPPA G-Function"',
-                                  selectInput(
-                                      "SPPA_G_Main",
-                                      "Zone",
-                                      choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-                                      selected = "Kallang",
-                                      multiple = FALSE
-                                  ),
-                                  numericInput(
-                                    "SPPA_G_No_Simulations",
-                                    "Number of Simulations (value from 1-999)",
-                                    value = 99,
-                                    step = 1,
-                                    min = 1,
-                                    max = 999
-                                  ),
-                                  actionButton("SPPA_Run_Gfunc", "Run Analysis")
-                              ),
-                          
-                            # If F-Function tabPanel is clicked, the sidebarPanel below will be shown
-                            conditionalPanel(
-                              'input.SPPA_var === "SPPA F-Function"',
-                              selectInput(
-                                "SPPA_F_Main",
-                                "Zone",
-                                choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-                                selected = "Kallang",
-                                multiple = FALSE
-                              ),
-                              numericInput(
-                                "SPPA_F_No_Simulations",
-                                "Number of Simulations (value from 1-999)",
-                                value = 99,
-                                step = 1,
-                                min = 1,
-                                max = 999
-                              ),
-                              actionButton("SPPA_Run_Ffunc", "Run Analysis")
-                            ),
-                          
-                            # If Cross K-Function tabPanel is clicked, the sidebarPanel below will be shown
-                            conditionalPanel(
-                              'input.SPPA_var === "SPPA Cross K-Function"',
-                              selectInput(
-                                "SPPA_CrossK_Main",
-                                "Zone",
-                                choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-                                selected = "Kallang",
-                                multiple = FALSE
-                              ),
-                              selectInput(
-                                "SPPA_CrossK_V1",
-                                "Variable Input A",
-                                # label = ACTUAL backend input
-                                choices = my_vars,
-                                selected = "Airbnb",
-                                multiple = FALSE
-                              ),
-                              selectInput(
-                                "SPPA_CrossK_V2",
-                                "Variable Input B",
-                                # label = ACTUAL backend input
-                                choices = my_vars,
-                                selected = "MRT",
-                                multiple = FALSE
-                              ),
-                              numericInput(
-                                "SPPA_CrossK_No_Simulations",
-                                "Number of Simulations (value from 1-999)",
-                                value = 99,
-                                step = 1,
-                                min = 1,
-                                max = 999
-                              ),
-                              actionButton("SPPA_Run_Cross_Kfunc", "Run Analysis")
-                            ),
-                          
-                            # If Cross L-Function tabPanel is clicked, the sidebarPanel below will be shown
-                            conditionalPanel(
-                              'input.SPPA_var === "SPPA Cross L-Function"',
-                              selectInput(
-                                "SPPA_CrossL_Main",
-                                "Zone",
-                                choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
-                                selected = "Kallang",
-                                multiple = FALSE
-                              ),
-                              selectInput(
-                                "SPPA_CrossL_V1",
-                                "Variable Input A",
-                                # label = ACTUAL backend input
-                                choices = my_vars,
-                                selected = "Airbnb",
-                                multiple = FALSE
-                              ),
-                              selectInput(
-                                "SPPA_CrossL_V2",
-                                "Variable Input B",
-                                # label = ACTUAL backend input
-                                choices = my_vars,
-                                selected = "MRT",
-                                multiple = FALSE
-                              ),
-                              numericInput(
-                                "SPPA_CrossL_No_Simulations",
-                                "Number of Simulations (value from 1-999)",
-                                value = 99,
-                                step = 1,
-                                min = 1,
-                                max = 999
-                              ),
-                              actionButton("SPPA_Run_Cross_Lfunc", "Run Analysis")
-                            )
-                      ), # close sidebarPanel
-                      
-                      mainPanel(width = 9,
-                                tabsetPanel(
+                        sidebarPanel(fluid = TRUE, width = 3,
+                                     
+                                     # If KDE tabPanel is clicked, sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.SPPA_var === "SPPA Kernel Density Estimation"',
+                                       selectInput(
+                                         "SPPA_main_var",
+                                         "Zone",
+                                         choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                                         selected = "Kallang",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "SPPA_kernel",
+                                         "Kernel Smoothing Input",
+                                         choices = c("Gaussian" = "gaussian",
+                                                     "Epanechnikov" = "epanechnikov",
+                                                     "Quartic" = "quartic",
+                                                     "Disc" = "disc"),
+                                         selected = "gaussian",
+                                         multiple = FALSE
+                                       ),
+                                       radioButtons(
+                                         "SPPA_bandwidth_method",
+                                         "Bandwidth Method",
+                                         choices = c("Auto",
+                                                     "Fixed",
+                                                     "Adaptive"),
+                                         selected = "Auto"
+                                       ),
+                                       conditionalPanel(
+                                         condition = "input.SPPA_bandwidth_method == 'Auto'",
+                                         selectInput(
+                                           "SPPA_bw_auto_var",
+                                           "Automatic Bandwidth Method",
+                                           choices = c("bw.diggle",
+                                                       "bw.CvL",
+                                                       "bw.scott",
+                                                       "bw.ppl"),
+                                           selected = "bw.diggle",
+                                           multiple = FALSE
+                                         )
+                                       ),
+                                       conditionalPanel(
+                                         condition = "input.SPPA_bandwidth_method == 'Fixed'",
+                                         sliderInput(
+                                           "SPPA_bw_fixed_var",
+                                           "Fixed Bandwidth Method (in km)",
+                                           min = 0,
+                                           max = 5,
+                                           step = 0.1,
+                                           value = 1
+                                         )
+                                       ),
+                                       actionButton("SPPA_Run_KDE", "Run Analysis")
+                                     ),
+                                     
+                                     # If G-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.SPPA_var === "SPPA G-Function"',
+                                       selectInput(
+                                         "SPPA_G_Main",
+                                         "Zone",
+                                         choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                                         selected = "Kallang",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "SPPA_G_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("SPPA_Run_Gfunc", "Run Analysis")
+                                     ),
+                                     
+                                     # If F-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.SPPA_var === "SPPA F-Function"',
+                                       selectInput(
+                                         "SPPA_F_Main",
+                                         "Zone",
+                                         choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                                         selected = "Kallang",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "SPPA_F_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("SPPA_Run_Ffunc", "Run Analysis")
+                                     ),
+                                     
+                                     # If Cross K-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.SPPA_var === "SPPA Cross K-Function"',
+                                       selectInput(
+                                         "SPPA_CrossK_Main",
+                                         "Zone",
+                                         choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                                         selected = "Kallang",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "SPPA_CrossK_V1",
+                                         "Variable Input A",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "Airbnb",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "SPPA_CrossK_V2",
+                                         "Variable Input B",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "MRT",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "SPPA_CrossK_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("SPPA_Run_Cross_Kfunc", "Run Analysis")
+                                     ),
+                                     
+                                     # If Cross L-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.SPPA_var === "SPPA Cross L-Function"',
+                                       selectInput(
+                                         "SPPA_CrossL_Main",
+                                         "Zone",
+                                         choices = c("Kallang", "Downtown Core", "Outram", "Rochor", "Jurong West", "Sembawang", "Pasir Ris"),
+                                         selected = "Kallang",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "SPPA_CrossL_V1",
+                                         "Variable Input A",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "Airbnb",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "SPPA_CrossL_V2",
+                                         "Variable Input B",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "MRT",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "SPPA_CrossL_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("SPPA_Run_Cross_Lfunc", "Run Analysis")
+                                     )
+                        ), # close sidebarPanel
+                        
+                        mainPanel(width = 9,
+                                  tabsetPanel(
                                     id = "SPPA_var",
                                     tabPanel("SPPA Kernel Density Estimation",
                                              column(12,
@@ -510,7 +508,7 @@ ui <- fluidPage(
                                                                       h4("What is Spatial Kernel Density Estimation?"),
                                                                       p("Kernel Density Estimation (KDE) is one of the most used density-based measures to estimate local density. It creates a grid in which each cell is assigned the density value of the kernel window centred on that cell. The density value is estimated by counting the number of objects/events in that kernel window."),
                                                                       h5("How to interpret the output?"),
-                                                                      p("The v in the legend indicates the number of objects/events in the kernel window centred in each grid. Essentially, the darker the colour of the area, the higher the intensity of points density in that area."),
+                                                                      p("The v in the legend indicates the number of objects/events in the kernel window centred in each grid. The darker the colour of the area, the higher the intensity of points density in that area."),
                                                                ))))),
                                     
                                     tabPanel("SPPA G-Function",
@@ -562,7 +560,7 @@ ui <- fluidPage(
                                                       tabPanel("About Cross K-Function",
                                                                column(12,
                                                                       h4("What is Cross K-Function?"),
-                                                                      p("Simply put, Cross K-function measures the number of type A points up to a given distance from a type B point."),
+                                                                      p("Cross K-function measures the number of type A points up to a given distance from a type B point."),
                                                                       h5("How to interpret the graph?"),
                                                                       p("Null hypothesis: The distribution of the two types of points are spatially independent."),
                                                                       p("1) If the observed K is above/below the envelope, for the distance where the observed K is above/below the envelope, it indicates that the two types of points are not spatially independent."),
@@ -582,7 +580,7 @@ ui <- fluidPage(
                                                       tabPanel("About Cross L-Function",
                                                                column(12,
                                                                       h4("What is Cross L-Function?"),
-                                                                      p("Simply put, Cross L-function measures the number of type A points up to a given distance from a type B point."),
+                                                                      p("Cross L-function measures the number of type A points up to a given distance from a type B point. Cross L-Function is the normalised version of Cross K-Function hence the dotted red line lies at 0."),
                                                                       h5("How to interpret the graph?"),
                                                                       p("Null hypothesis: The distribution of the two types of points are spatially independent."),
                                                                       p("1) If the observed L is above/below the envelope, for the distance where the observed L is above/below the envelope, it indicates that the two types of points are not spatially independent."),
@@ -591,170 +589,170 @@ ui <- fluidPage(
                                                                       p("If the observed L fully lies outside the envelope, we can reject the null hypothesis as the value is statistically significant."),
                                                                       
                                                                ))))),
-                                
-                                            ) # close tabsetPanel
-            
-                                ) # close mainPanel
+                                    
+                                  ) # close tabsetPanel
+                                  
+                        ) # close mainPanel
                       )), # close SPPA tabPanel
-                      
-                      # NetSPPA Panel
-                      tabPanel("NetSPPA",
-                               titlePanel("Network Constrained Spatial Point Patterns Analysis"),
-                               sidebarLayout(
-                                  sidebarPanel(fluid = TRUE, width = 3,
-                                               
-                                               # If KDE tabPanel is clicked, the sidebarPanel below will be shown
-                                               conditionalPanel(
-                                                    'input.NetSPPA_var === "NetSPPA Kernel Density Estimation"',
-                                                    selectInput(
-                                                      "NetSPPA_main_var",
-                                                      "Variable Input",
-                                                      # label = ACTUAL backend input
-                                                      choices = c("Airbnb", "Tourist Attraction", "Bus Stop", "Hotel", "Mall", "MRT", "7-11", "University"),
-                                                      selected = "Airbnb",
-                                                      multiple = FALSE
-                                                    ),
-                                                    selectInput(
-                                                      "NetSPPA_kernel",
-                                                      "Kernel Smoothing Input",
-                                                      choices = c("Quartic" = "quartic",
-                                                                  "Epanechnikov" = "epanechnikov",
-                                                                  "Uniform" = "uniform",
-                                                                  "Triangle" = "triangle",
-                                                                  "Tricube" = "tricube",
-                                                                  "Cosine" = "cosine",
-                                                                  "Triweight" = "triweight",
-                                                                  "Gaussian" = "gaussian",
-                                                                  "Scaled Gaussian" = "scaled gaussian"
-                                                      ),
-                                                      selected = "quartic",
-                                                      multiple = FALSE
-                                                    ),
-                                                    selectInput(
-                                                      "NetSPPA_method",
-                                                      "Method",
-                                                      choices = c("Simple" = "simple",
-                                                                  "Discontinuous" = "discontinuous",
-                                                                  "Continuous" = "continuous"),
-                                                      selected = "simple",
-                                                      multiple = FALSE
-                                                    ),
-                                                    actionButton("NetSPPA_Run_KDE", "Run Analysis")
-                                                  ),
-                                               
-                                               # If K-Function tabPanel is clicked, the sidebarPanel below will be shown
-                                               conditionalPanel(
-                                                    'input.NetSPPA_var === "NetSPPA K-Function"',
-                                                    selectInput(
-                                                      "NetSPPA_K_Main",
-                                                      "Variable Input",
-                                                      # label = ACTUAL backend input
-                                                      choices = c("Airbnb", "Tourist Attraction", "Bus Stop", "Hotel", "Mall", "MRT", "7-11", "University"),
-                                                      selected = "Airbnb",
-                                                      multiple = FALSE
-                                                    ),
-                                                    numericInput(
-                                                      "NetSPPA_K_No_Simulations",
-                                                      "Number of Simulations (value from 1-999)",
-                                                      value = 99,
-                                                      step = 1,
-                                                      min = 1,
-                                                      max = 999
-                                                    ),
-                                                    actionButton("NetSPPA_Run_Kfunc", "Run Analysis")
-                                                  ),
-                                               
-                                               # If Cross K-Function tabPanel is clicked, the sidebarPanel below will be shown
-                                               conditionalPanel(
-                                                    'input.NetSPPA_var === "NetSPPA Cross K-Function"',
-                                                    selectInput(
-                                                      "NetSPPA_CrossK_V1",
-                                                      "Variable Input A",
-                                                      # label = ACTUAL backend input
-                                                      choices = my_vars,
-                                                      selected = "Airbnb",
-                                                      multiple = FALSE
-                                                    ),
-                                                    selectInput(
-                                                      "NetSPPA_CrossK_V2",
-                                                      "Variable Input B",
-                                                      # label = ACTUAL backend input
-                                                      choices = my_vars,
-                                                      selected = "MRT",
-                                                      multiple = FALSE
-                                                    ),
-                                                    numericInput(
-                                                      "NetSPPA_CrossK_No_Simulations",
-                                                      "Number of Simulations (value from 1-999)",
-                                                      value = 99,
-                                                      step = 1,
-                                                      min = 1,
-                                                      max = 999
-                                                    ),
-                                                    actionButton("NetSPPA_Run_Cross_Kfunc", "Run Analysis")
-                                                  )
-                                               
-                                               ),
-                                          mainPanel(width = 9,
+             
+             # NetSPPA Panel
+             tabPanel("NetSPPA",
+                      titlePanel("Network Constrained Spatial Point Patterns Analysis"),
+                      sidebarLayout(
+                        sidebarPanel(fluid = TRUE, width = 3,
+                                     
+                                     # If KDE tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.NetSPPA_var === "NetSPPA Kernel Density Estimation"',
+                                       selectInput(
+                                         "NetSPPA_main_var",
+                                         "Variable Input",
+                                         # label = ACTUAL backend input
+                                         choices = c("Airbnb", "Tourist Attraction", "Bus Stop", "Hotel", "Mall", "MRT", "7-11", "University"),
+                                         selected = "Airbnb",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "NetSPPA_kernel",
+                                         "Kernel Smoothing Input",
+                                         choices = c("Quartic" = "quartic",
+                                                     "Epanechnikov" = "epanechnikov",
+                                                     "Uniform" = "uniform",
+                                                     "Triangle" = "triangle",
+                                                     "Tricube" = "tricube",
+                                                     "Cosine" = "cosine",
+                                                     "Triweight" = "triweight",
+                                                     "Gaussian" = "gaussian",
+                                                     "Scaled Gaussian" = "scaled gaussian"
+                                         ),
+                                         selected = "quartic",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "NetSPPA_method",
+                                         "Method",
+                                         choices = c("Simple" = "simple",
+                                                     "Discontinuous" = "discontinuous",
+                                                     "Continuous" = "continuous"),
+                                         selected = "simple",
+                                         multiple = FALSE
+                                       ),
+                                       actionButton("NetSPPA_Run_KDE", "Run Analysis")
+                                     ),
+                                     
+                                     # If K-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.NetSPPA_var === "NetSPPA K-Function"',
+                                       selectInput(
+                                         "NetSPPA_K_Main",
+                                         "Variable Input",
+                                         # label = ACTUAL backend input
+                                         choices = c("Airbnb", "Tourist Attraction", "Bus Stop", "Hotel", "Mall", "MRT", "7-11", "University"),
+                                         selected = "Airbnb",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "NetSPPA_K_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("NetSPPA_Run_Kfunc", "Run Analysis")
+                                     ),
+                                     
+                                     # If Cross K-Function tabPanel is clicked, the sidebarPanel below will be shown
+                                     conditionalPanel(
+                                       'input.NetSPPA_var === "NetSPPA Cross K-Function"',
+                                       selectInput(
+                                         "NetSPPA_CrossK_V1",
+                                         "Variable Input A",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "Airbnb",
+                                         multiple = FALSE
+                                       ),
+                                       selectInput(
+                                         "NetSPPA_CrossK_V2",
+                                         "Variable Input B",
+                                         # label = ACTUAL backend input
+                                         choices = my_vars,
+                                         selected = "MRT",
+                                         multiple = FALSE
+                                       ),
+                                       numericInput(
+                                         "NetSPPA_CrossK_No_Simulations",
+                                         "Number of Simulations (value from 1-999)",
+                                         value = 99,
+                                         step = 1,
+                                         min = 1,
+                                         max = 999
+                                       ),
+                                       actionButton("NetSPPA_Run_Cross_Kfunc", "Run Analysis")
+                                     )
+                                     
+                        ),
+                        mainPanel(width = 9,
+                                  tabsetPanel(
+                                    id = "NetSPPA_var",
+                                    tabPanel("NetSPPA Kernel Density Estimation",
+                                             column(12,
+                                                    h6(strong("Note:")),
+                                                    p(em("Please wait a short while for the default map to load.")),
+                                                    p(em("Variable: Airbnbs in Rochor, Kernel: Quartic and Method: Simple are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
+                                                    withSpinner(tmapOutput("NetSPPA_KDE_Map"), type=2),
                                                     tabsetPanel(
-                                                        id = "NetSPPA_var",
-                                                        tabPanel("NetSPPA Kernel Density Estimation",
-                                                                 column(12,
-                                                                        h6(strong("Note:")),
-                                                                        p(em("Please wait a short while for the default map to load.")),
-                                                                        p(em("Variable: Airbnbs in Rochor, Kernel: Quartic and Method: Simple are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
-                                                                        withSpinner(tmapOutput("NetSPPA_KDE_Map"), type=2),
-                                                                        tabsetPanel(
-                                                                          id = "NetSPPA_KDE_info",
-                                                                          tabPanel("About Network-Constrained Kernel Density Estimation",
-                                                                                   column(12,
-                                                                                          h4("What is Network-Constrained Kernel Density Estimation?"),
-                                                                                          p("A classical Kernel Density Estimate (KDE) estimates the continuous density of a set of events in a two-dimensional space, which is not suitable for analysing density of events occuring on a network. Therefore, the modified Network-Constrained Kernel Density Estimation is used to calculate density of events occuring along the edges of a network."),
-                                                                                          h5("How to interpret the output?"),
-                                                                                          p("Essentially, the road segments of darker colour have relatively higher density of point events than the road segments of lighter colour."),
-                                                                                   ))))),
-                                                        
-                                                        tabPanel("NetSPPA K-Function",
-                                                                 column(12,
-                                                                        h6(strong("Note:")),
-                                                                        p(em("Please wait a short while for the default graph to load.")),
-                                                                        p(em("Variable: Airbnbs in Rochor and Number of Simulations: 99 are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
-                                                                        withSpinner(plotOutput("NetSPPA_K_Function"), type=2),
-                                                                        tabsetPanel(
-                                                                          id = "NetSPPA_K_info",
-                                                                          tabPanel("About K-Function",
-                                                                                   column(12,
-                                                                                          h4("What is K-Function?"),
-                                                                                          p("Essentially, K-function measures the number of events found up to a given distance of any particular event, and the graph helps illustrate the spatial dependence (clustering or dispersion) of point features over a wide range of distances (m)."),
-                                                                                          h5("How to interpret the graph?"),
-                                                                                          p("Null hypothesis: The distribution of point events are uniformly distributed over the street network in Rochor"),
-                                                                                          p("1) If the empirical network K-function of the point events in Rochor is above the envelope, it indicates that the point events in Rochor are more clustered than what we can expect from a random distribution. We can reject the null hypothesis as the value is statistically significant."),
-                                                                                          p("2) If the empirical network K-function of the point events in Rochor is below the envelope, it indicates that the point events in Rochor are more dispersed than what we can expect from a random distribution. We can reject the null hypothesis as the value is statistically significant."),
-                                                                                          p("3) If the empirical network K-function of the point events in Rochor is inside the envelope, it indicates that the point events in Rochor are uniformly distributed. We do not have enough evidence to reject the null hypothesis as the value is not statistically significant."),
-                                                                                   ))))),
-                                                        tabPanel("NetSPPA Cross K-Function", 
-                                                                 column(12,
-                                                                        h6(strong("Note:")),
-                                                                        p(em("Please wait a short while for the default graph to load.")),
-                                                                        p(em("Main Variable: Airbnbs in Rochor, Secondary Variable: MRTs and Number of Simulations: 99 are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
-                                                                        withSpinner(plotOutput("NetSPPA_Cross_K_Function"), type=2),
-                                                                        tabsetPanel(
-                                                                          id = "NetSPPA_CrossK_info",
-                                                                          tabPanel("About Cross K-Function",
-                                                                                   column(12,
-                                                                                          h4("What is Cross K-Function?"),
-                                                                                          p("An extension of K-function, the Cross K-function measures the number of main point events (A) around a set of secondary point events (B), and again the graph helps illustrates the spatial dependence (clustering or dispersion) of the point A features around point B features over a wide range of distances (m)."),
-                                                                                          h5("How to interpret the graph?"),
-                                                                                          p("1) If the empirical cross K-function is above the envelope, point A features tend to be clustered around point B features for the distances where the empirical cross K-function is above the envelope."),
-                                                                                          p("2) If the empirical cross K-function is below the envelope, point A features tend to be dispersed around point B features for the distances where the empirical cross K-function is below the envelope."),
-                                                                                          p("3) If the empirical cross K-function is within the envelope, point A features tend to be randomly located around point B features for the distances where the empirical cross K-function is within the envelope."),
-                                                                                   )))))
-                                                        
-                                                    ) # close tabsetPanel
-                                                ) # close mainPanel
-                               ) # close sidebarLayout
-                      ) # close NetSPPA Panel
-              ) # close navbar Page
+                                                      id = "NetSPPA_KDE_info",
+                                                      tabPanel("About Network-Constrained Kernel Density Estimation",
+                                                               column(12,
+                                                                      h4("What is Network-Constrained Kernel Density Estimation?"),
+                                                                      p("A classical Kernel Density Estimate (KDE) estimates the continuous density of a set of events in a two-dimensional space, which is not suitable for analysing density of events occuring on a network. Therefore, the modified Network-Constrained Kernel Density Estimation is used to calculate density of events occuring along the edges of a network."),
+                                                                      h5("How to interpret the output?"),
+                                                                      p("The road segments of darker colour have relatively higher density of point events than the road segments of lighter colour."),
+                                                               ))))),
+                                    
+                                    tabPanel("NetSPPA K-Function",
+                                             column(12,
+                                                    h6(strong("Note:")),
+                                                    p(em("Please wait a short while for the default graph to load.")),
+                                                    p(em("Variable: Airbnbs in Rochor and Number of Simulations: 99 are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
+                                                    withSpinner(plotOutput("NetSPPA_K_Function"), type=2),
+                                                    tabsetPanel(
+                                                      id = "NetSPPA_K_info",
+                                                      tabPanel("About K-Function",
+                                                               column(12,
+                                                                      h4("What is K-Function?"),
+                                                                      p("K-function measures the number of events found up to a given distance of any particular event, and the graph helps illustrate the spatial dependence (clustering or dispersion) of point features over a wide range of distances (m)."),
+                                                                      h5("How to interpret the graph?"),
+                                                                      p("Null hypothesis: The distribution of point events are uniformly distributed over the street network in Rochor"),
+                                                                      p("1) If the empirical network K-function of the point events in Rochor is above the envelope, it indicates that the point events in Rochor are more clustered than what we can expect from a random distribution. We can reject the null hypothesis as the value is statistically significant."),
+                                                                      p("2) If the empirical network K-function of the point events in Rochor is below the envelope, it indicates that the point events in Rochor are more dispersed than what we can expect from a random distribution. We can reject the null hypothesis as the value is statistically significant."),
+                                                                      p("3) If the empirical network K-function of the point events in Rochor is inside the envelope, it indicates that the point events in Rochor are uniformly distributed. We do not have enough evidence to reject the null hypothesis as the value is not statistically significant."),
+                                                               ))))),
+                                    tabPanel("NetSPPA Cross K-Function", 
+                                             column(12,
+                                                    h6(strong("Note:")),
+                                                    p(em("Please wait a short while for the default graph to load.")),
+                                                    p(em("Main Variable: Airbnbs in Rochor, Secondary Variable: MRTs and Number of Simulations: 99 are used to plot the default map, select alternative choices and click on 'Run Analysis' to update the map.")),
+                                                    withSpinner(plotOutput("NetSPPA_Cross_K_Function"), type=2),
+                                                    tabsetPanel(
+                                                      id = "NetSPPA_CrossK_info",
+                                                      tabPanel("About Cross K-Function",
+                                                               column(12,
+                                                                      h4("What is Cross K-Function?"),
+                                                                      p("An extension of K-function, the Cross K-function measures the number of main point events (A) around a set of secondary point events (B), and again the graph helps illustrates the spatial dependence (clustering or dispersion) of the point A features around point B features over a wide range of distances (m)."),
+                                                                      h5("How to interpret the graph?"),
+                                                                      p("1) If the empirical cross K-function is above the envelope, point A features tend to be clustered around point B features for the distances where the empirical cross K-function is above the envelope."),
+                                                                      p("2) If the empirical cross K-function is below the envelope, point A features tend to be dispersed around point B features for the distances where the empirical cross K-function is below the envelope."),
+                                                                      p("3) If the empirical cross K-function is within the envelope, point A features tend to be randomly located around point B features for the distances where the empirical cross K-function is within the envelope."),
+                                                               )))))
+                                    
+                                  ) # close tabsetPanel
+                        ) # close mainPanel
+                      ) # close sidebarLayout
+             ) # close NetSPPA Panel
+  ) # close navbar Page
 ) # close fluid page
 
 # Define server logic 
@@ -765,14 +763,13 @@ server <- function(input, output, session) {
   PPPplot <- eventReactive(input$PPPInput, {
     
     all_ppp <- switch(input$PPPInput,
-                   "Central Region" = central_all_ppp,
-                   "Kallang" = kallang_all_ppp,
-                   "Downtown Core" = downtown_all_ppp,
-                   "Outram" = outram_all_ppp,
-                   "Rochor" = rochor_all_ppp,
-                   "Jurong West" = jurong_all_ppp,
-                   "Sembawang" = sembawang_all_ppp,
-                   "Pasir Ris" = pasir_all_ppp
+                      "Kallang" = kallang_all_ppp,
+                      "Downtown Core" = downtown_all_ppp,
+                      "Outram" = outram_all_ppp,
+                      "Rochor" = rochor_all_ppp,
+                      "Jurong West" = jurong_all_ppp,
+                      "Sembawang" = sembawang_all_ppp,
+                      "Pasir Ris" = pasir_all_ppp
     )
     
     plot(all_ppp, cols=c("red", "orange", "darkgrey", "brown", "green", "violet", "blue", "black"))
@@ -789,7 +786,7 @@ server <- function(input, output, session) {
   SGmap_Function <- isolate(tm_shape(mpsz_sf) +
                               tm_borders(alpha = 0.5) +
                               tmap_options(check.and.fix = TRUE) +
-                              tm_layout(legend.outside = TRUE, frame = FALSE) +
+                              tm_layout(legend.outside = TRUE, frame = FALSE, title='SG Map') +
                               tm_shape(airbnb_sf) +
                               tm_dots(col='red', size = 0.01, alpha = 1) +
                               tm_shape(attr_sf) +
@@ -806,7 +803,7 @@ server <- function(input, output, session) {
                               tm_dots(col='black', size = 0.01, alpha = 0.5) +
                               tm_shape(mrt_sf) +
                               tm_dots(col='violet', size = 0.01, alpha = 0.5) +
-                              tm_view(set.zoom.limits = c(10,16)))
+                              tm_view(set.zoom.limits = c(11,16)))
   
   output$SGmap <- renderTmap({
     SGmap_Function
@@ -819,7 +816,6 @@ server <- function(input, output, session) {
   ### 1a) SPPA KDE map
   KDEplot <- eventReactive(input$SPPA_Run_KDE, {
     zone <- switch(input$SPPA_main_var,
-                   "Central Region" = central_zone,
                    "Kallang" = kallang_zone,
                    "Downtown Core" = downtown_zone,
                    "Outram" = outram_zone,
@@ -869,15 +865,15 @@ server <- function(input, output, session) {
     # assign projection systems
     projection(kde_airbnbSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
     
-    tmap_mode("plot")
+    tmap_mode("view")
     tm_shape(zone) + 
       tm_borders(col = 'black',
                  lwd = 1,
                  alpha = 1.0) + 
       tm_shape(kde_airbnbSG_bw_raster) + 
       tm_raster("v") +
-      tm_layout(legend.position = c("right", "bottom"), frame = FALSE, title="KDE")
-      # tm_view(set.zoom.limits = c(10,16))
+      tm_layout(legend.position = c("right", "bottom"), frame = FALSE, title="KDE") +
+      tm_view(set.zoom.limits = c(13,16))
   },
   ignoreNULL = FALSE
   )
@@ -889,10 +885,7 @@ server <- function(input, output, session) {
   
   ### 1b) SPPA G Function 
   g_main <- reactive({
-    if (input$SPPA_G_Main == "Central Region") {
-      dataset <- central_airbnb_ppp
-    }
-    else if (input$SPPA_G_Main == "Kallang") {
+    if (input$SPPA_G_Main == "Kallang") {
       dataset <- kallang_airbnb_ppp
     }
     else if (input$SPPA_G_Main == "Downtown Core") {
@@ -930,10 +923,7 @@ server <- function(input, output, session) {
   
   ### 1c) SPPA F Function Graph
   f_main <- reactive({
-    if (input$SPPA_F_Main == "Central Region") {
-      dataset <- central_airbnb_ppp.km
-    }
-    else if (input$SPPA_F_Main == "Kallang") {
+    if (input$SPPA_F_Main == "Kallang") {
       dataset <- kallang_airbnb_ppp
     }
     else if (input$SPPA_F_Main == "Downtown Core") {
@@ -971,10 +961,7 @@ server <- function(input, output, session) {
   
   ### 1d) SPPA K Cross Function Graph
   Kcross_main <- reactive({
-    if (input$SPPA_CrossK_Main == "Central Region") {
-      dataset <- central_all_ppp
-    }
-    else if (input$SPPA_CrossK_Main == "Kallang") {
+    if (input$SPPA_CrossK_Main == "Kallang") {
       dataset <- kallang_all_ppp
     }
     else if (input$SPPA_CrossK_Main == "Downtown Core") {
@@ -1038,10 +1025,7 @@ server <- function(input, output, session) {
   
   ### 1e) to create L Cross Function Graph
   Lcross_main <- reactive({
-    if (input$SPPA_CrossL_Main == "Central Region") {
-      dataset <- central_all_ppp
-    }
-    else if (input$SPPA_CrossL_Main == "Kallang") {
+    if (input$SPPA_CrossL_Main == "Kallang") {
       dataset <- kallang_all_ppp
     }
     else if (input$SPPA_CrossL_Main == "Downtown Core") {
@@ -1104,6 +1088,8 @@ server <- function(input, output, session) {
   
   ######################## 1) SPPA ^ ########################
   
+  ######################## images ########################
+  
   ### Home Page logo
   output$logo <- renderImage({
     list(src = "images/logo.png",
@@ -1119,6 +1105,16 @@ server <- function(input, output, session) {
          height = 430,
          style="display: block; margin-left: auto; margin-right: auto;")
   }, deleteFile = FALSE)
+  
+  ### tmap legend
+  output$tmaplegend <- renderImage({
+    list(src = "images/tmap-legend.png",
+         width = 300,
+         height = 40,
+         style="display: block;")
+  }, deleteFile = FALSE)
+  
+  ######################## images ^ ########################
   
   ######################## SPPA reactive input ########################
   observe({
@@ -1229,7 +1225,7 @@ server <- function(input, output, session) {
                              tm_layout(legend.outside = TRUE, frame = FALSE, title = "NetKDE") +
                              tmap_options(basemaps = c("Esri.WorldGrayCanvas","OpenStreetMap", "Stamen.TonerLite"),
                                           basemaps.alpha = c(0.8, 0.8, 0.8)) +
-                             tm_view(set.zoom.limits = c(14,16)))
+                             tm_view(set.zoom.limits = c(15,16)))
   }, ignoreNULL = FALSE)
   
   output$NetSPPA_KDE_Map <- renderTmap({
