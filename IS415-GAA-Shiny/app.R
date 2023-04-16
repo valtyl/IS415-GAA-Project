@@ -580,7 +580,7 @@ ui <- fluidPage(
                                                       tabPanel("About Cross L-Function",
                                                                column(12,
                                                                       h4("What is Cross L-Function?"),
-                                                                      p("Cross L-function measures the number of type A points up to a given distance from a type B point. Cross L-Function is the normalised version of Cross K-Function hence the dotted red line lies at 0."),
+                                                                      p("Cross L-function measures the number of type A points up to a given distance from a type B point. Cross L-Function is the standardised version of Cross K-Function hence the dotted red line lies at 0."),
                                                                       h5("How to interpret the graph?"),
                                                                       p("Null hypothesis: The distribution of the two types of points are spatially independent."),
                                                                       p("1) If the observed L is above/below the envelope, for the distance where the observed L is above/below the envelope, it indicates that the two types of points are not spatially independent."),
